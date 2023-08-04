@@ -1,0 +1,246 @@
+<!-- FILEPATH: d:\TUTORIALS\website-building\main.html -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Paras Sharma</title>
+        <link rel="icon" type="image/png" href="assets/img/astronomy.png">
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added to make the webpage static -->
+        <style>
+                    /* Style for the parent container */
+                    .container {
+                        display: flex;
+                        flex-direction: row;
+                        margin: 5% 10%;
+                    }
+                    
+                    /* Style for the left panel */
+                    .left-panel {
+                        width: 30%;
+                        padding: 20px;
+                        /* border-radius: 50%; */
+                        overflow: hidden;
+                        /* background-color: #000000; */
+                    }
+                    
+                    /* Style for the right panel */
+                    .right-panel {
+                        width: 70%;
+                        padding: 20px;
+                        /* background-color: #ffffff; */
+                        margin-left: 20px;
+                    }
+                    
+                    /* Style for the photo */
+                    .photo {
+                        width: 100%;
+                        height: auto;
+                        border-radius: 50%;
+                    }
+                    
+                                        
+                    /* Style for the body */
+                    body {
+                        margin: 5%; /* Increased margin */
+                        font-family: Roboto; 
+                        background-image: url("assets/img/background-light.jpg");
+                        background-size: cover;
+                        background-position: left;
+                    }
+                    
+                    /* Style for the name and role */
+                    .name-role {
+                        text-align: center;
+                        margin-top: 20px;
+                    }
+                    
+                    /* Style for the name */
+                    .name {
+                        font-size: 24px;
+                        font-weight: bold;
+                        margin-bottom: 10px;
+                    }
+                    
+                    /* Style for the role */
+                    .role {
+                        font-size: 18px;
+                        font-weight: normal;
+                        margin-bottom: 10px;
+                    }
+                    
+                    /* Media query for smaller screens */
+                    @media only screen and (max-width: 768px) {
+                        .container {
+                            flex-direction: column;
+                            margin-left: 10%;
+                            margin-right: 10%;
+                            margin-top: 10%;
+                            margin-bottom: 10%;
+                        }
+                        
+                        .left-panel {
+                            width: 100%;
+                            margin-bottom: 20px;
+                        }
+                        
+                        .right-panel {
+                            width: 100%;
+                            margin-left: 0;
+                        }
+                    }
+                    
+                    /* Style for the dark mode/light mode button */
+                    .mode-button {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        background-color: #ffffff;
+                        color: #000000;
+                        border: none;
+                        border-radius: 5px;
+                        padding: 10px;
+                        cursor: pointer;
+                    }
+                    
+                            
+                    /* Style for the light mode */
+                    .light-mode {
+                        background-color: #ffffff;
+                        color: #000000;
+                    }
+                    
+                    /* Style for the right panel in light mode */
+                    .light-mode .right-panel {
+                        /* background-color: #ffffff; */
+                        color: #000000;
+                    }
+
+                    /* Style for the left panel in light mode */
+                    .light-mode .left-panel {
+                        /* background-color: #ffffff; */
+                        color: #000000;
+                    }
+
+                    /* Style for the dark mode */
+                    .dark-mode {
+                        background-color: #000000;
+                        color: #ffffff;
+                    }
+                    
+                    /* Style for the right panel in dark mode */
+                    .dark-mode .right-panel {
+                        /* background-color: #000000; */
+                        color: #ffffff;
+                    }
+
+                    /* Style for the left panel in dark mode */
+                    .dark-mode .left-panel {
+                        /* background-color: #000000; */
+                        color: #ffffff;
+                    }
+
+                    .body {
+                        margin: 5%; /* Increased margin */
+                        font-family: Roboto; 
+                        background-size: cover;
+                        background-position: center;
+                    }
+
+                    .social {
+                        /* margin: 5%; */
+                        /* border-radius: 6px; */
+                        position: relative;
+                        padding: auto;
+                        overflow: hidden;
+                        width: 100%;
+                        text-align: center;
+                    }
+                    
+                    .social a{
+                        font-size: 30px;
+                        color: #000000;
+                        /* border-style: groove; */
+                        /* border-color: grey; */
+                        /* padding: 10px; */
+                        margin: 10px;
+                        text-decoration: none;
+                        /* border-radius: 6px; */
+                        /* display: inline-block */
+                        text-align: center;
+                    }
+
+                    .dark-mode .social a{
+                        color: #ffffff;
+                    }
+
+                    .social a:hover{
+                        color: rgb(25, 235, 235);
+                        text-decoration: none;
+                    }
+
+                    a {
+                        text-decoration: none;
+                        color: #497895;
+                    }
+
+                    a:hover {
+                        text-decoration: none;
+                        color: rgb(8, 156, 156);
+                    }
+
+                    
+
+                </style>
+    </head>
+    <body>
+        <button class="mode-button" onclick="toggleMode()">Light Mode</button>
+        <div class="container">
+            <div class="left-panel">
+                <img class="photo" src="assets/img/photo.png" alt="Photo">
+                <div class="name-role">
+                    <div class="name">Paras Sharma</div>
+                    <div class="role">Astro Grad @ SBU</div>
+                </div>
+
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+                <div class="row social" align="center">
+                    <a href="mailto:sharmaparasiitd@gmail.com" class="fa fa-envelope" title="sharmaparasiitd@gmail.com"></a>
+                    <a href="https://www.linkedin.com/in/nutanstrek/s" class="fa fa-linkedin"></a>
+                    <a href="https://github.com/nutanstrek" class="fa fa-github"></a>
+                    <a href="https://twitter.com/time_dilates_me" class="fa fa-twitter"></a>
+                    <a href="https://www.instagram.com/time_dilates_me/" class="fa fa-instagram"></a>
+                </div>
+                
+            </div>
+            <div class="right-panel">
+                <h1>Hi I'm Paras!</h1>
+                <p>...an aspiring astronomer currently pursuing my graduate studies in astronomy at the <a href="https://www.stonybrook.edu/">Stony Brook University</a> in NY, US. I
+                recently completed my undergraduate degree in physics at <a href="https://home.iitd.ac.in/">IIT Delhi</a> in Delhi, India. I am interested in studying the
+                universe with computer simulations. My main fields of interest are cosmology, astrophysics, and computational physics.
+                </p>
+
+                <p>I am currently working with <a href="https://supritsinghlab.github.io/cv">Prof. Suprit Singh</a> and <a href="https://www.uni-potsdam.de/en/astroparticle/plasma-astrophysics/group-members">Dr. Sunil Malik</a> on “Estimating the Galactic Magnetic Field using MgII
+                absorbers and background Quasars” at <a href="https://supritsinghlab.github.io/">qGAL, IIT Delhi</a>. In the past, I have also worked with <a href="https://www.cita.utoronto.ca/~pgmartin/">Prof. Peter Martin</a> and <a href="https://www.cita.utoronto.ca/~amarchal/">Dr.
+                Antoine Marchal</a> on “Exploring Thermal Properties of the neutral ISM using the spectra of atomic Hydrogen” at the
+                <a href="https://www.cita.utoronto.ca/">Canadian Institute for Theoretical Astrophysics</a>, University Of Toronto.</p>
+                
+            </div>
+        </div>
+        <script>
+            function toggleMode() {
+                var body = document.getElementsByTagName("body")[0];
+                var button = document.getElementsByClassName("mode-button")[0];
+                if (body.classList.contains("dark-mode")) {
+                    body.classList.remove("dark-mode");
+                    button.innerHTML = "Light Mode";
+                    body.style.backgroundImage = "url('assets/img/background-light.jpg')";
+                } else {
+                    body.classList.add("dark-mode");
+                    button.innerHTML = "Dark Mode";
+                    body.style.backgroundImage = "url('assets/img/background-dark.jpg')";
+                }
+            }
+        </script>
+    </body>
+</html>
