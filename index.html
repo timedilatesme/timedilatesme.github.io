@@ -49,7 +49,7 @@
                     body {
                         margin: 5%; /* Increased margin */
                         font-family: Roboto; 
-                        background-image: url("assets/img/background-light.jpg");
+                        background-image: url("assets/img/domeblur-light.jpg");
                         background-size: cover;
                         background-position: center;
                     }
@@ -183,18 +183,29 @@
                         color: rgb(25, 235, 235);
                         text-decoration: none;
                     }
+                    p {
+                        font-size: 20px;
+                        font-weight: normal;
+                        margin-bottom: 10px;
+                    }
 
                     a {
                         text-decoration: none;
-                        color: #497895;
+                        color: #000000;
                     }
 
                     a:hover {
                         text-decoration: none;
-                        color: rgb(8, 156, 156);
+                        color: rgb(17, 231, 242);
                     }
 
-                    
+                    .dark-mode a {
+                        color: #ffffff;
+                    }
+
+                    .dark-mode a:hover {
+                        color: rgb(44, 225, 248);
+                    }
 
                 </style>
     </head>
@@ -225,8 +236,8 @@
                 universe with computer simulations. My main fields of interest are cosmology, astrophysics, and computational physics.
                 </p>
 
-                <p>I am currently working with <a href="https://supritsinghlab.github.io/cv">Prof. Suprit Singh</a> and <a href="https://www.uni-potsdam.de/en/astroparticle/plasma-astrophysics/group-members">Dr. Sunil Malik</a> on “Estimating the Galactic Magnetic Field using MgII
-                absorbers and background Quasars” at <a href="https://supritsinghlab.github.io/">qGAL, IIT Delhi</a>. In the past, I have also worked with <a href="https://www.cita.utoronto.ca/~pgmartin/">Prof. Peter Martin</a> and <a href="https://www.cita.utoronto.ca/~amarchal/">Dr.
+                <p>I am currently working with <a href="https://www.astro.sunysb.edu/koda/Stony_Brook/Jin_KODA.html">Prof. Jin Koda</a> on understanding the spatial variation of pattern speed in Barred Spiral Galaxies. In the past, I have worked with <a href="https://supritsinghlab.github.io/cv">Prof. Suprit Singh</a> and <a href="https://www.uni-potsdam.de/en/astroparticle/plasma-astrophysics/group-members">Dr. Sunil Malik</a> on “Investigating the Galactic Magnetic Field using MgII
+                absorbers and background Quasars” at <a href="https://supritsinghlab.github.io/">qGAL, IIT Delhi</a>. I have also worked with <a href="https://www.cita.utoronto.ca/~pgmartin/">Prof. Peter Martin</a> and <a href="https://www.cita.utoronto.ca/~amarchal/">Dr.
                 Antoine Marchal</a> on “Exploring Thermal Properties of the neutral ISM using the spectra of atomic Hydrogen” at the
                 <a href="https://www.cita.utoronto.ca/">Canadian Institute for Theoretical Astrophysics</a>, University Of Toronto.</p>
 
@@ -241,11 +252,11 @@
                 if (body.classList.contains("dark-mode")) {
                     body.classList.remove("dark-mode");
                     button.innerHTML = "Light Mode";
-                    body.style.backgroundImage = "url('assets/img/background-light.jpg')";
+                    body.style.backgroundImage = "url('assets/img/domeblur-light.jpg')";
                 } else {
                     body.classList.add("dark-mode");
                     button.innerHTML = "Dark Mode";
-                    body.style.backgroundImage = "url('assets/img/background-dark.jpg')";
+                    body.style.backgroundImage = "url('assets/img/domeblur-dark.jpg')";
                 }
             }
         </script>
