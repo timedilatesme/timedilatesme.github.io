@@ -1,265 +1,237 @@
-<!-- FILEPATH: d:\TUTORIALS\website-building\main.html -->
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Paras Sharma</title>
-        <link rel="icon" type="image/png" href="assets/img/astronomy.png">
-        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added to make the webpage static -->
-        <meta name="google-site-verification" content="yykCGwcqHSb5ymxsrCobV3zvDVabdv335ZaKl4bdG6w" />
-        
-        <!-- SEO tags -->
-        <meta name="description" content="Paras Sharma's personal website. Paras Sharma is an aspiring astrophysicist and cosmologist, currently a graduate student at Stony Brook University (SBU). He received his bachelor's in Engineering Physics from IIT Delhi (IITD).">
-        <meta name="keywords" content="paras, sharma, iit delhi, iitd, stony brook, SBU, astrophysics, cosmology, galaxies, magnetic fields">
-        <meta name="author" content="Paras Sharma">
-        <style>
-                    /* Style for the parent container */
-                    .container {
-                        display: flex;
-                        flex-direction: row;
-                        margin: 5% 10%;
-                    }
-                    
-                    /* Style for the left panel */
-                    .left-panel {
-                        width: 30%;
-                        padding: 20px;
-                        /* border-radius: 50%; */
-                        overflow: hidden;
-                        /* background-color: #000000; */
-                    }
-                    
-                    /* Style for the right panel */
-                    .right-panel {
-                        width: 70%;
-                        padding: 20px;
-                        /* background-color: #ffffff; */
-                        margin-left: 20px;
-                    }
-                    
-                    /* Style for the photo */
-                    .photo {
-                        width: 100%;
-                        height: auto;
-                        border-radius: 50%;
-                    }
-                    
-                                        
-                    /* Style for the body */
-                    body {
-                        margin: 5%; /* Increased margin */
-                        font-family: Roboto; 
-                        background-image: url("assets/img/domeblur-light.jpg");
-                        background-size: cover;
-                        background-position: center;
-                    }
-                    
-                    /* Style for the name and role */
-                    .name-role {
-                        text-align: center;
-                        margin-top: 20px;
-                    }
-                    
-                    /* Style for the name */
-                    .name {
-                        font-size: 24px;
-                        font-weight: bold;
-                        margin-bottom: 10px;
-                    }
-                    
-                    /* Style for the role */
-                    .role {
-                        font-size: 18px;
-                        font-weight: normal;
-                        margin-bottom: 10px;
-                    }
-                    
-                    /* Media query for smaller screens */
-                    @media only screen and (max-width: 768px) {
-                        .container {
-                            flex-direction: column;
-                            margin: 5% 5%;
-                        }
+<html lang="en">
 
-                        .left-panel {
-                            width: 100%;
-                            align-items: center;
-                        }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paras Sharma - Astrophysics Portfolio</title>
 
-                        .right-panel {
-                            width: 100%;
-                            align-items: center;
-                            margin-top: 20px;
-                            align-items: center;
-                            margin-top: 20px;
-                        }
-                    }
-                    
-                    /* Style for the dark mode/light mode button */
-                    .mode-button {
-                        position: absolute;
-                        top: 10px;
-                        right: 10px;
-                        background-color: #ffffff;
-                        color: #000000;
-                        border: none;
-                        border-radius: 5px;
-                        padding: 10px;
-                        cursor: pointer;
-                    }
-                    
-                            
-                    /* Style for the light mode */
-                    .light-mode {
-                        background-color: #ffffff;
-                        color: #000000;
-                    }
-                    
-                    /* Style for the right panel in light mode */
-                    .light-mode .right-panel {
-                        /* background-color: #ffffff; */
-                        color: #000000;
-                    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
 
-                    /* Style for the left panel in light mode */
-                    .light-mode .left-panel {
-                        /* background-color: #ffffff; */
-                        color: #000000;
-                    }
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-                    /* Style for the dark mode */
-                    .dark-mode {
-                        background-color: #000000;
-                        color: #ffffff;
-                    }
-                    
-                    /* Style for the right panel in dark mode */
-                    .dark-mode .right-panel {
-                        /* background-color: #000000; */
-                        color: #ffffff;
-                    }
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
 
-                    /* Style for the left panel in dark mode */
-                    .dark-mode .left-panel {
-                        /* background-color: #000000; */
-                        color: #ffffff;
-                    }
+    <!-- Defer JS execution -->
+    <script src="assets/js/script.js" defer></script>
+</head>
 
-                    .body {
-                        margin: 5%; /* Increased margin */
-                        font-family: Roboto; 
-                        background-size: cover;
-                        background-position: center;
-                    }
+<body>
 
-                    .social {
-                        /* margin: 5%; */
-                        /* border-radius: 6px; */
-                        position: relative;
-                        padding: auto;
-                        overflow: hidden;
-                        width: 100%;
-                        text-align: center;
-                    }
-                    
-                    .social a{
-                        font-size: 30px;
-                        color: #000000;
-                        /* border-style: groove; */
-                        /* border-color: grey; */
-                        /* padding: 10px; */
-                        margin: 10px;
-                        text-decoration: none;
-                        /* border-radius: 6px; */
-                        /* display: inline-block */
-                        text-align: center;
-                    }
+    <!-- Starry Background Containers -->
+    <div class="stars stars-1"></div>
+    <div class="stars stars-2"></div>
+    <div class="stars stars-3"></div>
 
-                    .dark-mode .social a{
-                        color: #ffffff;
-                    }
-
-                    .social a:hover{
-                        color: rgb(25, 235, 235);
-                        text-decoration: none;
-                    }
-                    p {
-                        font-size: 20px;
-                        font-weight: normal;
-                        margin-bottom: 10px;
-                    }
-
-                    a {
-                        text-decoration: none;
-                        color: #000000;
-                    }
-
-                    a:hover {
-                        text-decoration: none;
-                        color: rgb(17, 231, 242);
-                    }
-
-                    .dark-mode a {
-                        color: #ffffff;
-                    }
-
-                    .dark-mode a:hover {
-                        color: rgb(44, 225, 248);
-                    }
-
-                </style>
-    </head>
-    <body>
-        <button class="mode-button" onclick="toggleMode()">Light Mode</button>
-        <div class="container">
-            <div class="left-panel">
-                <img class="photo" src="assets/img/latest_photo.jpg" alt="Photo">
-                <div class="name-role">
-                    <div class="name">Paras Sharma</div>
-                    <div class="role">Astro Grad @ SBU</div>
+    <header class="site-header">
+        <div class="header-content">
+            <!-- Info on the left -->
+            <div class="personal-info">
+                <h1>Paras SHARMA</h1>
+                <p>Graduate Student | SBU, NY, USA</p>
+                <div class="contact-info">
+                    <span><i class="fas fa-envelope icon-contact"></i> <a
+                            href="mailto:paras.sharma@stonybrook.edu">paras.sharma@stonybrook.edu</a></span>
+                    <!-- <span><i class="fas fa-phone icon-contact"></i> <a href="tel:+1XXXXXXXXXX">+1 (XXX)
+                            XXX-XXXX</a></span> -->
+                    <!-- <span><i class="fas fa-globe icon-contact"></i> <a href="https://timedilatesme.github.io" -->
+                    <!-- target="_blank" rel="noopener noreferrer">timedilatesme.github.io</a></span> -->
                 </div>
-
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
-                <div class="row social" align="center">
-                    <a href="mailto:sharmaparasiitd@gmail.com" class="fa fa-envelope" title="sharmaparasiitd@gmail.com"></a>
-                    <a href="https://www.linkedin.com/in/nutanstrek/s" class="fa fa-linkedin"></a>
-                    <a href="https://github.com/timedilatesme" class="fa fa-github"></a>
-                    <a href="https://twitter.com/time_dilates_me" class="fa fa-twitter"></a>
-                    <a href="https://www.instagram.com/time_dilates_me/" class="fa fa-instagram"></a>
-                </div>
-                
             </div>
-            <div class="right-panel">
-                <h1>Hi I'm Paras!</h1>
-                <p>...an aspiring astronomer currently pursuing my graduate studies in astronomy at the <a href="https://www.stonybrook.edu/">Stony Brook University</a> in NY, US. I
-                recently completed my undergraduate degree in physics at <a href="https://home.iitd.ac.in/">IIT Delhi</a> in Delhi, India. I am interested in studying the
-                universe with computer simulations. My main fields of interest are cosmology, astrophysics, and computational physics.
-                </p>
-
-                <p>I am currently working with <a href="https://www.astro.sunysb.edu/koda/Stony_Brook/Jin_KODA.html">Prof. Jin Koda</a> on understanding the spatial variation of pattern speed in Barred Spiral Galaxies. In the past, I have worked with <a href="https://supritsinghlab.github.io/cv">Prof. Suprit Singh</a> and <a href="https://www.uni-potsdam.de/en/astroparticle/plasma-astrophysics/group-members">Dr. Sunil Malik</a> on “Investigating the Galactic Magnetic Field using MgII
-                absorbers and background Quasars” at <a href="https://supritsinghlab.github.io/">qGAL, IIT Delhi</a>. I have also worked with <a href="https://www.cita.utoronto.ca/~pgmartin/">Prof. Peter Martin</a> and <a href="https://www.cita.utoronto.ca/~amarchal/">Dr.
-                Antoine Marchal</a> on “Exploring Thermal Properties of the neutral ISM using the spectra of atomic Hydrogen” at the
-                <a href="https://www.cita.utoronto.ca/">Canadian Institute for Theoretical Astrophysics</a>, University Of Toronto.</p>
-
-                <p>My latest CV can be found <a href="assets/docs/Paras_CV.pdf">here</a>.</p>
-                
+            <!-- Controls and Social on the right -->
+            <div class="controls-social">
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <nav class="social-links">
+                    <!-- <a href="mailto:XXXX@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email"><i
+                            class="fas fa-envelope icon-social"></i></a> -->
+                    <a href="https://github.com/timedilatesme" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub"><i class="fab fa-github icon-social"></i></a>
+                    <a href="https://linkedin.com/in/nutanstrek/" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn"><i class="fab fa-linkedin icon-social"></i></a>
+                    <a href="https://twitter.com/time_dilates_me" target="_blank" rel="noopener noreferrer"
+                        aria-label="Twitter"><i class="fab fa-twitter icon-social"></i></a>
+                    <a href="https://www.instagram.com/time_dilates_me/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"><i class="fab fa-instagram icon-social"></i></a>
+                </nav>
             </div>
         </div>
-        <script>
-            function toggleMode() {
-                var body = document.getElementsByTagName("body")[0];
-                var button = document.getElementsByClassName("mode-button")[0];
-                if (body.classList.contains("dark-mode")) {
-                    body.classList.remove("dark-mode");
-                    button.innerHTML = "Light Mode";
-                    body.style.backgroundImage = "url('assets/img/domeblur-light.jpg')";
-                } else {
-                    body.classList.add("dark-mode");
-                    button.innerHTML = "Dark Mode";
-                    body.style.backgroundImage = "url('assets/img/domeblur-dark.jpg')";
-                }
-            }
-        </script>
-    </body>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <!-- Ensure image path is correct -->
+            <img src="assets/img/photo.jpg" alt="Paras Sharma" class="profile-pic">
+            <p class="intro-text">Navigating the cosmos through data and simulation.</p>
+        </section>
+
+        <section id="timeline" class="timeline-section">
+            <h2>My Journey Through Spacetime</h2>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+
+                <!-- === TIMELINE EVENTS START (Populated from CV - Reverse Chronological) === -->
+
+                <!-- --- Stony Brook University --- -->
+                <div class="timeline-event education-event observed">
+                    <div class="timeline-marker"></div> <!-- Marker is now a diamond via CSS -->
+                    <div class="timeline-content">
+                        <span class="timeline-date">Aug 2023 - Present</span>
+                        <h3>Stony Brook University</h3>
+                        <p>Ph.D. in Physics & Astronomy (Transferred from M.A.)</p>
+                        <small>CGPA: 3.96/4</small>
+                        <!-- Research Branch at SBU -->
+                        <div class="timeline-branch research-event">
+                            <div class="timeline-branch-content">
+                                <span class="timeline-date">Aug 2023 - Present</span>
+                                <h4>Research: Galactic Dynamics & Pattern Speed</h4>
+                                <p>Supervisor: Prof. Jin Koda</p>
+                                <ul>
+                                    <li>Using N-body hydrodynamic simulation data.</li>
+                                    <li>Quantifying Tremaine-Weinberg method validity.</li>
+                                    <li>Analyzing spatial variation of pattern speed.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- --- IIT Delhi --- -->
+                <div class="timeline-event education-event">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">July 2019 – May 2023</span>
+                        <h3>IIT Delhi, India</h3>
+                        <p>Bachelor of Technology in Engineering Physics</p>
+                        <small>CGPA: 9.382/10 | Dept. Rank 1</small>
+                        <!-- Awards during IITD -->
+                        <div class="timeline-branch achievement-event">
+                            <div class="timeline-branch-content">
+                                <span class="timeline-date">2023</span>
+                                <h4>Institute Silver Medal</h4>
+                                <p>Awarded for highest GPA in Physics Dept.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-branch achievement-event">
+                            <div class="timeline-branch-content">
+                                <span class="timeline-date">Multiple</span>
+                                <h4>Institute Merit Award</h4>
+                                <p>Top 7% in Institute for five semesters.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-branch achievement-event">
+                            <div class="timeline-branch-content">
+                                <span class="timeline-date">2021</span>
+                                <h4>Mudit Sharma Scholarship</h4>
+                                <p>Awarded for highest GPA in the Dept.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-branch achievement-event">
+                            <div class="timeline-branch-content">
+                                <span class="timeline-date">2021</span>
+                                <h4>B-83 Scholarship</h4>
+                                <p>Awarded by 1983 alumni for Academic Excellence.</p>
+                            </div>
+                        </div>
+                        <!-- Research during IITD (overlaps SBU start) -->
+                        <div class="timeline-branch research-event">
+                            <div class="timeline-branch-content">
+                                <span class="timeline-date">Aug 2022 – Aug 2024</span>
+                                <h4>Research: Galactic Magnetic Fields</h4>
+                                <p>Supervisors: Prof. Suprit Singh (IITD), Dr. Sunil Malik (Potsdam)</p>
+                                <ul>
+                                    <li>Mapping NVSS/SDSS quasars for Mg-II absorbers.</li>
+                                    <li>Probing B-fields via RRM (0.38 < z < 2.3).</li>
+                                    <li>Analyzing RM radial profiles.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Toronto Internship during IITD -->
+                        <div class="timeline-branch research-event">
+                            <div class="timeline-branch-content">
+                                <span class="timeline-date">May 2022 - Aug 2022</span>
+                                <h4>Research: Neutral ISM (U. Toronto)</h4>
+                                <p>Supervisors: Prof. Peter G. Martin, Dr. Antoine Marchal</p>
+                                <small>Mitacs GRI Scholar</small>
+                                <ul>
+                                    <li>Analyzed GHIGLS HI survey data using ROHSA.</li>
+                                    <li>Assessed gas distribution & properties.</li>
+                                    <li>Compared HI with dust (Herschel) & CO data.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- SURA Award during IITD -->
+                        <div class="timeline-branch achievement-event">
+                            <div class="timeline-branch-content">
+                                <span class="timeline-date">2021</span>
+                                <h4>Summer UGrad Research Award</h4>
+                                <p>Awarded by IRD-IIT Delhi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- --- International Physics Olympiad --- -->
+                <div class="timeline-event achievement-event">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Jan 2021</span>
+                        <h3>Intl. Theoretical Physics Olympiad</h3>
+                        <p>Rank 12 (out of 150+ teams)</p>
+                        <small>Solved rigorous physics problems under time constraints.</small>
+                    </div>
+                </div>
+
+                <!-- --- University Physics Competition --- -->
+                <div class="timeline-event achievement-event">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Nov 2020</span>
+                        <h3>University Physics Competition</h3>
+                        <p>Silver Medal (Rank 12 / 244 teams)</p>
+                        <small>Co-authored "Ion Thrusters to Saturn".</small>
+                    </div>
+                </div>
+
+                <!-- --- Navyug Convent School & IIT-JEE --- -->
+                <div class="timeline-event education-event">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 2017 - Mar 2019</span>
+                        <h3>Navyug Convent School</h3>
+                        <p>Senior High School Education</p>
+                        <small>Percentage: 90.4%</small>
+                        <!-- IIT-JEE Achievement -->
+                        <div class="timeline-branch achievement-event">
+                            <div class="timeline-branch-content">
+                                <span class="timeline-date">2019</span>
+                                <h4>IIT-JEE 2019</h4>
+                                <p>Ranked in Top 0.2% (of 1.2M students).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- === END TIMELINE EVENTS === -->
+
+            </div> <!-- /timeline-container -->
+        </section>
+
+    </main>
+
+    <footer class="site-footer-bottom">
+        <p>© <span id="year"></span> Paras Sharma. All rights reserved.</p>
+    </footer>
+
+</body>
+
 </html>
