@@ -35,12 +35,10 @@
     --star-color: var(--star-color-dark);
     /* Fonts & Spacing */
     --font-pixel: 'Press Start 2P', cursive;
-    /* --font-sans: 'Inter', sans-serif; */
-    /* No longer primary */
+    --font-sans: 'Inter', sans-serif;
     --base-spacing: 8px;
     --border-width: 2px;
     --card-radius: 0;
-    /* Marker size */
     --marker-size: 14px;
 }
 
@@ -90,19 +88,13 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: var(--font-pixel);
-    /* Default to pixel font */
     font-size: 1.1rem;
-    /* Smaller base size for pixel font */
     line-height: 1.8;
-    /* Increased line height for pixel font */
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
     position: relative;
-    /* font-smooth: never; -webkit-font-smoothing: none; */
-    /* Enable if needed */
 }
 
-/* Headings use Pixel Font */
 h1,
 h2,
 h3,
@@ -113,7 +105,6 @@ h6 {
     color: var(--primary-color);
     margin-bottom: calc(var(--base-spacing) * 1.5);
     line-height: 1.4;
-    /* Adjust line height */
     text-transform: uppercase;
     font-weight: normal;
 }
@@ -144,7 +135,6 @@ h4 {
     margin-bottom: calc(var(--base-spacing) * 0.75);
 }
 
-/* Body text also uses Pixel Font */
 p {
     margin-bottom: var(--base-spacing);
     font-size: 1.1rem;
@@ -295,9 +285,10 @@ body.dark-mode {
     line-height: 1.6;
     margin-bottom: var(--base-spacing);
     opacity: 0.8;
+    font-family: var(--font-pixel);
 }
 
-/* Adjust subtitle size */
+/* Pixel subtitle */
 .contact-info {
     font-size: 1rem;
     display: flex;
@@ -328,7 +319,6 @@ body.dark-mode {
     opacity: 1.0;
     word-break: break-all;
     font-size: 1rem;
-    /* Ensure link font size matches */
 }
 
 .contact-info span a:hover {
@@ -422,8 +412,6 @@ body.dark-mode {
     font-weight: normal;
 }
 
-/* Use pixel font, adjusted size */
-
 /* --- Timeline Section --- */
 .timeline-section {
     padding: calc(var(--base-spacing) * 2);
@@ -506,6 +494,7 @@ body.dark-mode {
 }
 
 .timeline-marker {
+    /* Container for positioning */
     position: absolute;
     top: calc(var(--base-spacing) * 0.75);
     width: var(--marker-size);
@@ -525,6 +514,7 @@ body.dark-mode {
 }
 
 .timeline-marker::before {
+    /* The visible diamond */
     content: '';
     position: absolute;
     top: 0;
@@ -532,13 +522,16 @@ body.dark-mode {
     width: 100%;
     height: 100%;
     border: var(--border-width) solid var(--primary-color);
-    background-color: var(--bg-color);
+    /* background-color: var(--bg-color); REMOVED */
     transform: rotate(45deg);
     border-radius: 0;
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1;
+    /* Ensure diamond is above potential parent content */
 }
 
 .timeline-event.observed .timeline-marker::before {
+    /* Style diamond when observed */
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     box-shadow: 0 0 10px 2px var(--accent-color);
@@ -645,7 +638,6 @@ body.dark-mode {
     font-family: var(--font-pixel);
 }
 
-/* Smaller H4 */
 .timeline-branch .timeline-date {
     font-size: 0.9rem;
     opacity: 0.6;
@@ -674,12 +666,10 @@ body.dark-mode {
     padding: calc(var(--base-spacing) * 2.5);
     margin-top: calc(var(--base-spacing) * 5);
     font-size: 1rem;
-    /* Smaller footer text */
     color: var(--text-color);
     opacity: 0.6;
     border-top: var(--border-width) solid var(--border-color);
     font-family: var(--font-pixel);
-    /* Pixel footer */
 }
 
 /* --- Responsiveness --- */
@@ -696,7 +686,6 @@ body.dark-mode {
         font-size: 1rem;
     }
 
-    /* Adjust base size */
     .header-content {
         flex-direction: column;
         align-items: center;
@@ -753,25 +742,47 @@ body.dark-mode {
         right: auto !important;
     }
 
+    /* Mobile Branch Alignment Fix */
     .timeline-branch {
+        position: relative;
+        padding-left: calc(var(--base-spacing) * 2.5);
+        /* Indent branch text */
         margin-left: 0;
-        padding-left: calc(var(--base-spacing) * 2);
+        /* Reset margin */
         border-left: var(--border-width) dashed var(--border-color);
         border-right: none;
-        margin-right: 0;
-        padding-right: 0;
         text-align: left !important;
+        margin-top: calc(var(--base-spacing) * 2.5);
+        /* Add some space */
+        padding-top: calc(var(--base-spacing) * 1);
+        /* Reduce top padding */
     }
 
     .timeline-branch::before {
-        left: calc(var(--base-spacing) * -1 - var(--border-width));
+        /* Horizontal Connector */
+        content: '';
+        position: absolute;
+        top: calc(var(--base-spacing) * 0.5 + 6px);
+        /* Align vertically near top */
+        /* Calculate left start position */
+        left: calc(-1 * (var(--base-spacing) * 3.5 + var(--border-width)));
+        /* (Event Pad 6) - (Branch Pad 2.5) = 3.5 */
+        width: calc(var(--base-spacing) * 3.5);
+        /* Span the gap */
+        height: var(--border-width);
+        background: var(--border-color);
         right: auto !important;
     }
 
-    .timeline-event:nth-child(odd) .timeline-branch ul,
-    .timeline-event:nth-child(even) .timeline-branch ul {
-        text-align: left;
+    .timeline-branch.research-event::before {
+        background-color: var(--secondary-color);
     }
+
+    .timeline-branch.achievement-event::before {
+        background-color: var(--secondary-color);
+    }
+
+    /* End Mobile Branch Fix */
 
     p,
     ul li,
@@ -780,8 +791,6 @@ body.dark-mode {
         font-size: 1rem;
         line-height: 1.8;
     }
-
-    /* Adjust paragraph sizes */
 }
 
 @media (max-width: 480px) {
@@ -797,12 +806,10 @@ body.dark-mode {
         font-size: 1.4rem;
     }
 
-    /* Smaller headings */
     body {
         font-size: 0.9rem;
     }
 
-    /* Smaller base */
     .contact-info {
         flex-direction: column;
         align-items: center;
@@ -844,7 +851,6 @@ body.dark-mode {
         font-size: 1rem;
     }
 
-    /* Smaller content headings */
     p,
     ul li,
     small,
@@ -853,5 +859,14 @@ body.dark-mode {
         line-height: 1.9;
     }
 
-    /* Adjust smallest sizes */
+    .timeline-branch {
+        padding-left: calc(var(--base-spacing) * 2);
+    }
+
+    /* Adjust branch padding slightly */
+    .timeline-branch::before {
+        left: calc(-1 * (var(--base-spacing) * 2.5 + var(--border-width)));
+        /* (Event Pad 5) - (Branch Pad 2) = 3 */
+        width: calc(var(--base-spacing) * 2.5);
+    }
 }
