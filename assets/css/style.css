@@ -285,10 +285,8 @@ body.dark-mode {
     line-height: 1.6;
     margin-bottom: var(--base-spacing);
     opacity: 0.8;
-    font-family: var(--font-pixel);
 }
 
-/* Pixel subtitle */
 .contact-info {
     font-size: 1rem;
     display: flex;
@@ -432,7 +430,8 @@ body.dark-mode {
     width: var(--border-width);
     background-color: var(--border-color);
     transform: translateX(-50%);
-    z-index: 1;
+    z-index: 0;
+    /* Line behind markers */
     --glow-height: 0%;
 }
 
@@ -446,10 +445,11 @@ body.dark-mode {
     background: var(--accent-color);
     box-shadow: 0 0 8px 2px var(--glow-color);
     transition: height 0.1s linear;
-    z-index: 0;
+    z-index: -1;
     border-radius: 0;
 }
 
+/* Glow behind line */
 .timeline-event {
     position: relative;
     margin-bottom: calc(var(--base-spacing) * 4);
@@ -499,7 +499,8 @@ body.dark-mode {
     top: calc(var(--base-spacing) * 0.75);
     width: var(--marker-size);
     height: var(--marker-size);
-    z-index: 2;
+    z-index: 1;
+    /* Container above line */
     pointer-events: none;
     background-color: transparent;
     border: none;
@@ -522,12 +523,12 @@ body.dark-mode {
     width: 100%;
     height: 100%;
     border: var(--border-width) solid var(--primary-color);
-    /* background-color: var(--bg-color); REMOVED */
+    /* background-color: var(--bg-color); REMOVED default background */
     transform: rotate(45deg);
     border-radius: 0;
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    z-index: 1;
-    /* Ensure diamond is above potential parent content */
+    z-index: 2;
+    /* Diamond shape above line */
 }
 
 .timeline-event.observed .timeline-marker::before {
@@ -577,6 +578,19 @@ body.dark-mode {
     border-radius: var(--card-radius);
     display: flex;
     flex-direction: column;
+    transition: transform 0.2s ease-out, border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+    /* Added box-shadow transition */
+    cursor: pointer;
+    /* Indicate interactivity */
+}
+
+.timeline-content:hover {
+    transform: translateY(-4px) translateX(2px);
+    /* Slight lift and shift */
+    border-color: var(--accent-color);
+    /* Highlight border on hover */
+    box-shadow: 6px 6px 0px var(--accent-color);
+    /* Accent shadow on hover */
 }
 
 .timeline-date {
@@ -742,33 +756,23 @@ body.dark-mode {
         right: auto !important;
     }
 
-    /* Mobile Branch Alignment Fix */
     .timeline-branch {
         position: relative;
         padding-left: calc(var(--base-spacing) * 2.5);
-        /* Indent branch text */
         margin-left: 0;
-        /* Reset margin */
         border-left: var(--border-width) dashed var(--border-color);
         border-right: none;
         text-align: left !important;
         margin-top: calc(var(--base-spacing) * 2.5);
-        /* Add some space */
         padding-top: calc(var(--base-spacing) * 1);
-        /* Reduce top padding */
     }
 
     .timeline-branch::before {
-        /* Horizontal Connector */
         content: '';
         position: absolute;
-        top: calc(var(--base-spacing) * 0.5 + 6px);
-        /* Align vertically near top */
-        /* Calculate left start position */
-        left: calc(-1 * (var(--base-spacing) * 3.5 + var(--border-width)));
-        /* (Event Pad 6) - (Branch Pad 2.5) = 3.5 */
+        top: calc(var(--base-spacing) * 1.5 + 5px);
+        left: calc(-1 * (var(--base-spacing) * 3.5));
         width: calc(var(--base-spacing) * 3.5);
-        /* Span the gap */
         height: var(--border-width);
         background: var(--border-color);
         right: auto !important;
@@ -781,8 +785,6 @@ body.dark-mode {
     .timeline-branch.achievement-event::before {
         background-color: var(--secondary-color);
     }
-
-    /* End Mobile Branch Fix */
 
     p,
     ul li,
@@ -863,10 +865,8 @@ body.dark-mode {
         padding-left: calc(var(--base-spacing) * 2);
     }
 
-    /* Adjust branch padding slightly */
     .timeline-branch::before {
         left: calc(-1 * (var(--base-spacing) * 2.5 + var(--border-width)));
-        /* (Event Pad 5) - (Branch Pad 2) = 3 */
         width: calc(var(--base-spacing) * 2.5);
     }
 }
