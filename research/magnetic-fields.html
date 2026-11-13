@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magnetic fields around distant galaxies · Paras Sharma</title>
+<meta name="description" content="Measuring magnetic fields in and around distant galaxies with the Faraday rotation of background quasars.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/explainer.css">
+</head>
+<body data-topic="magnetic-fields">
+<nav class="site"></nav>
+<main>
+  <header class="wrap intro">
+    <a class="crumb" href="../index.html#research">← All research</a>
+    <p class="kicker" data-topic-kicker></p>
+    <h1>Magnetic fields around distant galaxies</h1>
+    <p class="lede prose">A magnetic field rotates the polarization of radio light that passes through it. When a distant quasar shines through a foreground galaxy, that rotation carries the galaxy's magnetic field, even for galaxies far too distant to map directly. I worked on this as an undergraduate at <a href="https://home.iitd.ac.in">IIT Delhi</a> with Shivam Burman, supervised by <a href="https://supritsingh.github.io">Prof. Suprit Singh</a> (IIT Delhi) and Dr. Sunil Malik (Universität Potsdam).</p>
+  </header>
+  <section class="wrap concept">
+    <figure class="pfig wide">
+      <div class="plate"><span class="tag">How it works</span>
+        <div class="mfbox" data-thumb="magnetic-fields" role="img" aria-label="Schematic: polarized radio light from a background quasar passes through the magnetized halo of a foreground galaxy at impact parameter D on its way to us; inside the halo its polarization angle turns."></div>
+      </div>
+      <figcaption class="cap">Illustration, not to scale. The quasar's radio light is polarized (amber ticks show the angle). Crossing the galaxy's magnetized halo, the angle turns by an amount set by the magnetic field along the sightline and the density of free electrons: Faraday rotation. Sightlines that pass closer to the galaxy, at smaller impact parameter D, show a larger spread in this extra rotation.</figcaption>
+    </figure>
+  </section>
+
+  <section class="sec" id="summary">
+    <div class="wrap summary">
+      <div class="prose">
+        <p class="kicker">In short</p>
+        <h2>Quasars as probes</h2>
+        <p>The rotation of a quasar's polarization, its rotation measure, builds up along the whole sightline: in the quasar's own surroundings, in intervening galaxies and in the Milky Way. After the Milky Way's contribution is removed, what remains is the residual rotation measure. If a sightline passes through a foreground galaxy, the galaxy adds to its scatter.</p>
+        <p>Mg II absorption lines in a quasar's spectrum mark gas in a galaxy along the sightline. We matched rotation measures from the <a href="https://www.cv.nrao.edu/nvss/">NVSS</a> catalogue with quasars in <a href="https://www.sdss.org">SDSS</a> and compiled 59 sightlines that each pass a single Mg II absorber at redshift 0.37–0.8, at impact parameters up to 160 kpc: from the galaxy's disk out into its circumgalactic medium.</p>
+        <p>Compared with sightlines that have no absorber, the extra scatter in residual rotation measure falls with impact parameter. Converted to an average line-of-sight field, it is 2.39 ± 0.7 μG within 50 kpc and 1.67 ± 0.38 μG beyond: the field weakens from the disk out into the halo. Radio polarization surveys such as <a href="https://www.astron.nl/telescopes/lofar/">LOFAR</a> and the <a href="https://www.skao.int">SKA</a> will extend the method to many more sightlines.</p>
+
+      </div>
+      <aside class="side">
+        <h3>Paper</h3>
+        <ul class="pubs" data-pubs="magnetic-fields"></ul>
+      </aside>
+    </div>
+    <div class="wrap paperfigs">
+      <p class="kicker">From the paper</p>
+      <figure class="pfig narrow">
+        <div class="plate paper"><span class="tag">Fig. 1</span><img src="../assets/img/papers/mgii-sample.png" alt="Top: a flowchart from 1132 quasars to the final sample of 59 sightlines with one Mg II absorber. Bottom: an all-sky map in galactic coordinates of the 59 galaxy-quasar pairs, coloured by residual rotation measure." width="1100" height="1346" loading="lazy"></div>
+        <figcaption class="cap">How the sample was built (top), and where the 59 galaxy–quasar pairs lie on the sky in galactic coordinates, coloured by residual rotation measure (bottom).
+          <span class="src">Fig. 1 of <a href="https://arxiv.org/abs/2405.09623">Burman, Sharma et al. (2024), JCAP 08, 063</a></span></figcaption>
+      </figure>
+      <figure class="pfig narrow">
+        <div class="plate paper"><span class="tag">Fig. 6</span><img src="../assets/img/papers/mgii-field.png" alt="Two panels against impact parameter D from 20 to 160 kpc: the excess rotation-measure scatter (top) and the line-of-sight magnetic field strength (bottom), both decreasing with D." width="1097" height="1259" loading="lazy"></div>
+        <figcaption class="cap">The excess scatter in residual rotation measure (top) and the average line-of-sight magnetic field it implies (bottom), against the sightline's distance from the galaxy, for two ways of estimating the scatter. Both fall with distance.
+          <span class="src">Fig. 6 of <a href="https://arxiv.org/abs/2405.09623">Burman, Sharma et al. (2024), JCAP 08, 063</a></span></figcaption>
+      </figure>
+    </div>
+    <div class="wrap pager" data-pager style="margin-top:56px"></div>
+  </section>
+</main>
+<footer class="site"></footer>
+<script src="../assets/data.js"></script>
+<script src="../assets/site.js"></script>
+<script src="../assets/viz/thumbs.js"></script>
+<script>Thumbs.mount(document.querySelector('.mfbox'), 'magnetic-fields', { labels: true });</script>
+</body>
+</html>

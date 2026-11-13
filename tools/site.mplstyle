@@ -1,0 +1,55 @@
+# site.mplstyle: plots that match the website.
+# Usage:  plt.style.use("tools/site.mplstyle");  fig.savefig("assets/plots/name.svg")
+# SVG keeps text as text, so the browser draws it in the site's own font.
+# Colours mean the same thing as on the site:
+#   blue  #7fb2ff  nearer source / shorter wavelength / first sample
+#   red   #ff7b63  farther source / longer wavelength / second sample
+#   amber #f2b45a  highlight (one thing per figure)
+#   ink   #ede9df  everything else
+
+figure.facecolor   : none
+axes.facecolor     : none
+savefig.facecolor  : none
+savefig.transparent: True
+savefig.bbox       : tight
+savefig.pad_inches : 0.08
+svg.fonttype       : none
+figure.figsize     : 6.4, 4.8
+figure.dpi         : 150
+
+font.family        : sans-serif
+font.sans-serif    : IBM Plex Sans, Helvetica Neue, Arial, DejaVu Sans
+font.size          : 12
+mathtext.fontset   : custom
+mathtext.rm        : IBM Plex Sans
+mathtext.it        : IBM Plex Sans:italic
+
+text.color         : ede9df
+axes.labelcolor    : ede9df
+axes.edgecolor     : 8a8780
+axes.linewidth     : 0.8
+axes.titlesize     : 12
+axes.titlelocation : left
+axes.titlecolor    : f2b45a
+axes.spines.top    : False
+axes.spines.right  : False
+axes.grid          : False
+axes.prop_cycle    : cycler("color", ["7fb2ff", "ff7b63", "f2b45a", "ede9df", "8a8780"])
+
+xtick.color        : 8a8780
+ytick.color        : 8a8780
+xtick.labelcolor   : cdc9bf
+ytick.labelcolor   : cdc9bf
+xtick.direction    : in
+ytick.direction    : in
+xtick.minor.visible: True
+ytick.minor.visible: True
+
+lines.linewidth    : 1.6
+patch.edgecolor    : none
+legend.frameon     : False
+legend.labelcolor  : ede9df
+grid.color         : 8a8780
+grid.alpha         : 0.25
+grid.linestyle     : "--"
+image.cmap         : magma

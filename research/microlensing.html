@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quasar microlensing · Paras Sharma</title>
+<meta name="description" content="How stars in a lens galaxy make the images of a background quasar flicker, and what that says about the quasar's accretion disk.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/explainer.css">
+<style>
+  #mapbox { position:absolute; opacity:0; transition:opacity .6s; z-index:1; }
+  #map { width:100%; height:100%; display:block; }
+</style>
+</head>
+<body data-topic="microlensing">
+<nav class="site"></nav>
+<main>
+  <header class="wrap intro">
+    <a class="crumb" href="../index.html#research">← All research</a>
+    <p class="kicker" data-topic-kicker></p>
+    <h1>Quasar microlensing</h1>
+    <p class="lede prose">Stars in a lens galaxy make the images of a background quasar brighten and fade. How sharply they do so depends on the size of the quasar's accretion disk, which is far too small to resolve directly.</p>
+    <p class="hint"><span>↓ Scroll to step through the figure (4 steps)</span><a href="#summary">Skip to the summary</a></p>
+  </header>
+
+  <section class="stage" id="micro" style="height:480vh">
+    <div class="pin">
+      <canvas class="sk" id="microc"></canvas>
+      <div class="plate live" id="microPlate"><span class="tag">Fig. II · microlensing</span><span class="cap" id="microCap">isothermal lens + shear · ray-traced</span></div>
+      <div id="mapbox"><canvas id="map"></canvas></div>
+      <button type="button" class="toggle" id="freeze" hidden>Freeze stars</button>
+      <div class="steps">
+        <div class="step"><div class="panel"><span class="tag">1 · One quasar, four images</span>
+          <h3>A lensed quasar</h3>
+          <p>A quasar is the bright, compact centre of a galaxy, powered by gas accreting onto a supermassive black hole. Behind a lens it can appear as four point-like images, with its host galaxy stretched into faint arcs.</p>
+        </div></div>
+        <div class="step"><div class="panel"><span class="tag">2 · Zoom into one image</span>
+          <h3>Stars break it up again</h3>
+          <p>Each image passes through the stars of the lens galaxy. Every star acts as a small lens and splits the image into micro-images only microarcseconds apart. We can't resolve them, but we can measure how their total brightness changes.</p>
+        </div></div>
+        <div class="step"><div class="panel"><span class="tag">3 · The source plane</span>
+          <h3>A caustic network</h3>
+          <p>Mapped onto the quasar's plane, the stars form a web of <span class="amber">caustics</span>, curves of very high magnification. As the accretion disk moves across it, the image brightens and fades.</p>
+          <p>The disk is larger at longer wavelengths (R ∝ λ<sup>4/3</sup> for a thin disk). The small <span class="blue">blue</span> region shows sharp caustic crossings, and the larger <span class="red">red</span> region smooths them out.</p>
+        </div></div>
+        <div class="step"><div class="panel"><span class="tag">4 · Moving stars</span>
+          <h3>The network keeps changing</h3>
+          <p>The stars in the lens galaxy have their own motions, so the caustic network itself changes over time, on top of the disk's motion across it. Here the map is recomputed from 8 million rays every frame, and the view follows the disk.</p>
+        </div></div>
+      </div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <section class="sec" id="summary">
+    <div class="wrap summary">
+      <div class="prose">
+        <p class="kicker">In short</p>
+        <h2>Flickering images</h2>
+        <p>A quasar is the bright centre of a distant galaxy, powered by gas falling onto a supermassive black hole. When a galaxy lies in front of it, the quasar can appear as two or four images.</p>
+        <p>Each image passes through the stars of the lens galaxy, and each star acts as a small lens. Mapped onto the quasar's plane, the stars form a network of caustics: curves where the magnification is very high. As the quasar, the lens galaxy and its stars move relative to each other, the images brighten and fade independently.</p>
+        <p>A small source crosses a caustic sharply, a large one smoothly. The accretion disk is larger at longer wavelengths, so comparing how the images vary in different bands constrains the disk's size and its temperature profile. The quasar's own variability appears in every image, offset by the time delays; separating it from microlensing is part of the problem.</p>
+        <p>Because the stars move, the caustic network itself changes. With J. Fagin and collaborators I work on simulating this dynamical microlensing quickly on GPUs, and on showing that neglecting it can bias accretion-disk size measurements across a population of lensed quasars.</p>
+      </div>
+      <aside class="side">
+        <h3>Papers</h3>
+        <ul class="pubs" data-pubs="microlensing"></ul>
+      </aside>
+    </div>
+    <div class="wrap pager" data-pager style="margin-top:56px"></div>
+  </section>
+</main>
+<footer class="site"></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/site.js"></script>
+<script src="../assets/viz/sketch3d.js"></script>
+<script src="../assets/viz/lensart.js"></script>
+<script src="../assets/viz/realsky.js"></script>
+<script src="../assets/viz/microlens.js"></script>
+<script src="../assets/viz/stage.js"></script>
+<script>
+const { Sketch, clamp, ease, lerp } = S3, { clipTo, place, stage, stageRect, inView } = Stage;
+const BLUE = '#7fb2ff', RED = '#ff7b63', AMBER = '#f2b45a', INK = '#eceae4';
+const microSec = document.getElementById('micro'), microP = stage(microSec);
+const mSk = new Sketch(document.getElementById('microc'));
+const mapbox = document.getElementById('mapbox'), mapc = document.getElementById('map'), freezeBtn = document.getElementById('freeze');
+const HALF = 2.8;
+let ml = null; try { ml = new Microlens(mapc, { half: HALF, kappa: 0.45, gamma: 0.3, rays: 8e6 }); } catch (e) { console.warn(e); }
+let frozen = Site.reduced, starT = 0, lastMs = 0, srcT = 0; const hist = [];
+const setFreeze = () => { freezeBtn.textContent = frozen ? 'Let stars move' : 'Freeze stars'; }; setFreeze();
+freezeBtn.onclick = () => { frozen = !frozen; setFreeze(); };
+const SIG_B = 0.05, SIG_R = 0.05 * Math.pow(8000 / 3500, 4 / 3); // R ∝ λ^(4/3)
+// the quad: same lens equation as the arcs; quasar = point source, host = extended source at the same position
+const QLENS = { thetaE: 1, gamma: 0.12, gphi: 0.35 }, QSRC = { bx: 0.045, by: 0.025 };
+const QIMG = LA.pointImages({ ...QLENS, ...QSRC });
+const microPlate = document.getElementById('microPlate'), microCap = document.getElementById('microCap');
+function layoutMap(narrow) {
+  const P = place(microPlate, stageRect()), lcH = narrow ? 70 : 150; // room below the map for the light curve
+  const s = Math.min(P.w * 0.86, P.h - lcH - 58), x = P.x + (P.w - s) / 2, y = P.y + 44;
+  place(mapbox, { x, y, w: s, h: s });
+  const d = Math.min(devicePixelRatio || 1, 2); if (mapc.width !== Math.round(s * d)) { mapc.width = mapc.height = Math.round(s * d); }
+  return { x, y, s, P };
+}
+function drawMicro(ms) {
+  const dt = Math.min(0.05, (ms - lastMs) / 1000); lastMs = ms;
+  const p = microP(), narrow = innerWidth < 820, box = layoutMap(narrow);
+  const cx = box.P.x + box.P.w / 2, cy = box.P.y + box.P.h / 2, Rg = Math.min(box.P.w, box.P.h) * 0.26, ctx = mSk.ctx;
+  microCap.textContent = p < 1.75 ? 'isothermal lens + shear · ray-traced images' : p < 3 ? 'source plane · inverse ray-shooting, 8M rays' : 'source plane · stars moving · view follows the disk';
+  mSk.bounds = box.P; mSk.begin(ms); clipTo(ctx, box.P);
+  const zoom = ease(clamp((p - 0.9) / 0.8, 0, 1)), toMap = ease(clamp((p - 1.75) / 0.5, 0, 1));
+  const tw = Site.reduced ? 0 : 1; // no breathing or flicker with reduced motion
+  if (toMap < 1 && QIMG.length) {
+    const a = 1 - toMap, A = QIMG[0], k = lerp(1, 7, zoom) * (1 + tw * 0.04 * Math.sin(ms / 3000) * (1 - zoom));
+    const tx = lerp(cx + A.x * Rg, cx, zoom) - A.x * Rg * k, ty = lerp(cy + A.y * Rg, cy, zoom) - A.y * Rg * k; // image A glides to centre
+    const S = (u, v) => [tx + u * Rg * k, ty + v * Rg * k];
+    const ga = a * (1 - ease(clamp(zoom * 2.5, 0, 1)));
+    // realistic light (realsky.js): the deflector, the quasar's host galaxy stretched into a faint ring,
+    // and the four quasar images as point sources (each flickers a little: intrinsic variability, delayed)
+    const g = S(0, 0), P = box.P, view = { cx: g[0] - P.x, cy: g[1] - P.y, scale: Rg * k, psf: 1.1 };
+    if (ga > 0.01) RS.draw(ctx, P.x, P.y, P.w, P.h, { ...view, defl: { re: 0.67, n: 4, q: 0.8, phi: 0.35, amp: 0.09 },
+      sources: [{ lens: QLENS, x: QSRC.bx, y: QSRC.by, re: 0.14, q: 0.8, phi: 1.2, amp: 0.2, color: RS.COL.host, knots: 0.4, bulge: 0.5, seed: 5 }] }, ga); // the quasar's host galaxy: fainter than its images, patchy
+    RS.draw(ctx, P.x, P.y, P.w, P.h, { ...view, psf: 1.6, pointColor: RS.COL.qso,
+      points: QIMG.map((im, i) => ({ x: im.x, y: im.y, amp: 22 * Math.sqrt(Math.abs(im.mu)) * (1 + tw * 0.1 * Math.sin(ms / 900 - i * 1.3)) })) }, a);
+    QIMG.forEach((im, i) => { const q = S(im.x, im.y); if (zoom < 0.3) mSk.text2(q[0] + 16, q[1] - 12, 'ABCD'[i], { alpha: a * (1 - zoom * 3), color: AMBER, inside: true }); });
+    if (zoom > 0 && ml) {
+      const qa = S(A.x, A.y), sc = lerp(0.2, 1, zoom) * Math.min(mSk.h * 0.48, box.s * 0.9) / ml.Rstar;
+      ctx.strokeStyle = INK; ctx.lineWidth = 1;
+      for (let i = 0; i < ml.N; i++) {
+        const [x, y] = ml.starPos(i, starT), px = qa[0] + x * sc, py = qa[1] + y * sc;
+        ctx.globalAlpha = zoom * a * 0.85; ctx.beginPath(); ctx.moveTo(px - 3, py); ctx.lineTo(px + 3, py); ctx.moveTo(px, py - 3); ctx.lineTo(px, py + 3); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+      if (zoom > 0.8 && toMap <= 0) mSk.text2(qa[0], qa[1] + 42, 'image A  + stars in the lens galaxy', { alpha: 0.7 * a, align: 'center', font: '11px "IBM Plex Sans"' });
+    }
+  }
+  ctx.restore();
+  mapbox.style.opacity = toMap;
+  freezeBtn.hidden = p < 3; Object.assign(freezeBtn.style, { left: (box.P.x + box.P.w - freezeBtn.offsetWidth - (narrow ? 8 : 0)) + 'px', top: (narrow ? box.P.y + box.P.h - freezeBtn.offsetHeight - 8 : box.P.y + box.P.h + 12) + 'px' });
+  if (!ml || toMap <= 0) return;
+  if (p >= 3 && !frozen) starT += dt * 6;
+  const span = 2 * HALF * 0.8;
+  if (Site.reduced) srcT = clamp((p - 2) / 2, 0, 0.999) * span / 0.16; // reduced motion: the disk moves only as you scroll
+  else srcT += dt;
+  const sx = -span / 2 + ((srcT * 0.16) % span), sy = 0.42;
+  // step 4: the window shrinks and follows the disk (rays are re-binned, not the image magnified)
+  const fz = ease(clamp((p - 3) / 0.5, 0, 1)), h = lerp(HALF, 1.5, fz), lim = HALF - h;
+  ml.view(h, clamp(sx * fz, -lim, lim), clamp(sy * fz, -lim, lim));
+  ml.shoot(starT); ml.show();
+  if (hist.length && sx < hist[hist.length - 1][0]) hist.length = 0;
+  const [mb, mr] = ml.lightCurve([sx, sy], SIG_B, SIG_R); hist.push([sx, mb, mr]);
+  const toPx = (x, y) => [box.x + (x - ml.cx + ml.half) / (2 * ml.half) * box.s, box.y + (1 - (y - ml.cy + ml.half) / (2 * ml.half)) * box.s];
+  const [dx, dy] = toPx(sx, sy), pxu = box.s / (2 * ml.half);
+  clipTo(ctx, { x: box.x, y: box.y, w: box.s, h: box.s });
+  mSk.circle2(dx, dy, 2 * SIG_R * pxu, { color: RED, alpha: 0.95 * toMap, width: 1.6 });
+  mSk.circle2(dx, dy, 1.2 * SIG_R * pxu, { color: RED, alpha: 0.5 * toMap, width: 1 });
+  mSk.circle2(dx, dy, 2 * SIG_B * pxu, { color: BLUE, alpha: toMap, width: 1.8 });
+  mSk.stroke2([[toPx(-span / 2, sy)[0], dy], [toPx(span / 2, sy)[0], dy]], { alpha: 0.25 * toMap, dash: [2, 5], width: 1, rough: 0.3 });
+  ctx.restore();
+  ctx.strokeStyle = 'rgba(237,233,223,.3)'; ctx.lineWidth = 1; ctx.globalAlpha = toMap; ctx.strokeRect(box.x + 0.5, box.y + 0.5, box.s - 1, box.s - 1); ctx.globalAlpha = 1;
+  if (!narrow) mSk.text2(box.x, box.y - 10, 'SOURCE PLANE · magnification (live)', { alpha: 0.7 * toMap, font: '11px "IBM Plex Sans"' });
+  mSk.text2(box.x + box.s, box.y - 10, "one star's θE", { alpha: 0.7 * toMap, align: 'right', font: '11px "IBM Plex Sans"' });
+  mSk.stroke2([[box.x + box.s - pxu, box.y - 4], [box.x + box.s, box.y - 4]], { alpha: 0.7 * toMap, rough: 0.2, passes: 1 });
+  const lx = box.x, ly = box.y + box.s + (narrow ? 22 : 54), lw = box.s, lh = Math.min(100, box.P.y + box.P.h - ly - 14);
+  if (lh > 24) {
+    mSk.text2(lx, ly - 8, 'LIGHT CURVE · Δmag', { alpha: 0.7 * toMap, font: '11px "IBM Plex Sans"' });
+    if (!narrow) mSk.text2(lx + lw, ly - 8, 'small disk', { alpha: 0.9 * toMap, align: 'right', color: BLUE, font: '11px "IBM Plex Sans"' });
+    if (!narrow) mSk.text2(lx + lw - 80, ly - 8, 'large disk', { alpha: 0.9 * toMap, align: 'right', color: RED, font: '11px "IBM Plex Sans"' });
+    mSk.stroke2([[lx, ly + lh], [lx + lw, ly + lh]], { alpha: 0.4 * toMap, rough: 0.3, passes: 1 });
+    const mag = m => -2.5 * Math.log10(Math.max(m, 1e-3) / ml.muMean);
+    for (const [k, col] of [[1, BLUE], [2, RED]]) {
+      const pts = hist.map(h => [lx + (h[0] + span / 2) / span * lw, ly + lh / 2 + clamp(mag(h[k]) * lh * 0.28, -lh / 2, lh / 2)]);
+      if (pts.length > 1) mSk.stroke2(pts, { color: col, alpha: toMap, width: 1.5, rough: 0.5, passes: 1 });
+    }
+  }
+}
+Site.loop(ms => { if (inView(microSec)) drawMicro(ms); else lastMs = ms; });
+</script>
+</body>
+</html>

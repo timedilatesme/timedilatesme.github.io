@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- A research page that summarises a paper. To add a topic:
+       1. add its entry to DATA.research in assets/data.js (slug, area, title, text, img, alt), and tag its papers with topic: '<slug>'
+       2. copy this file to research/<slug>.html and set data-topic="<slug>" on <body>
+       3. write the lede and summary; add figures from the paper as .pfig blocks (a white figure gets .plate.paper)
+     The kicker ("Research topic N of M"), the paper list and the previous/next links fill themselves in. -->
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TITLE · Paras Sharma</title>
+<meta name="description" content="ONE SENTENCE">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/explainer.css">
+</head>
+<body data-topic="SLUG">
+<nav class="site"></nav>
+<main>
+  <header class="wrap intro">
+    <a class="crumb" href="../index.html#research">← All research</a>
+    <p class="kicker" data-topic-kicker></p>
+    <h1>TITLE</h1>
+    <p class="lede prose">LEDE</p>
+  </header>
+  <section class="sec" id="summary">
+    <div class="wrap summary">
+      <div class="prose">
+        <p class="kicker">In short</p>
+        <h2>HEADING</h2>
+        <p>SUMMARY</p>
+      </div>
+      <aside class="side">
+        <h3>Paper</h3>
+        <ul class="pubs" data-pubs="SLUG"></ul>
+      </aside>
+    </div>
+    <div class="wrap paperfigs">
+      <p class="kicker">From the paper</p>
+      <figure class="pfig">
+        <div class="plate paper"><span class="tag">Fig. N</span><img src="../assets/img/papers/FILE" alt="ALT" width="W" height="H" loading="lazy"></div>
+        <figcaption class="cap">CAPTION <span class="src">Fig. N of <a href="https://arxiv.org/abs/ID">AUTHORS (YEAR), arXiv:ID</a></span></figcaption>
+      </figure>
+    </div>
+    <div class="wrap pager" data-pager style="margin-top:56px"></div>
+  </section>
+</main>
+<footer class="site"></footer>
+<script src="../assets/data.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

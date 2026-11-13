@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strong lensing tomography · Paras Sharma</title>
+<meta name="description" content="How lenses with sources at two distances constrain dark energy, and how pairs of ordinary lenses can be analysed like them.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/explainer.css">
+</head>
+<body data-topic="tomography">
+<nav class="site"></nav>
+<main>
+  <header class="wrap intro">
+    <a class="crumb" href="../index.html#research">← All research</a>
+    <p class="kicker" data-topic-kicker></p>
+    <h1>Strong lensing tomography</h1>
+    <p class="lede prose">A lens with sources at two distances forms two rings. For a given mass profile, the ratio of their sizes no longer depends on the lens mass, only on cosmological distances. Such systems are rare, so I show how pairs of ordinary lenses can be analysed in the same way.</p>
+    <p class="hint"><span>↓ Scroll to step through the figure (4 steps)</span><a href="#summary">Skip to the summary</a></p>
+  </header>
+
+  <section class="stage" id="tomo" style="height:480vh">
+    <div class="pin">
+      <canvas class="sk" id="tomoc"></canvas>
+      <div class="plate live" id="tomoPlate"><span class="tag">Fig. I · tomography</span><span class="cap">illustration · thin-lens geometry · distances not to scale</span></div>
+      <div class="steps">
+        <div class="step"><div class="panel"><span class="tag">1 · One lens, one source</span>
+          <h3>Light bent into a ring</h3>
+          <p>A massive galaxy sits almost exactly in front of a more distant one. The distant galaxy's light is bent around the deflector into arcs along the <span class="blue">Einstein radius</span>.</p>
+          <p>That radius depends on the deflector's mass and on distances: for an isothermal lens, θ<sub>E</sub> ∝ D<sub>ds</sub>/D<sub>s</sub>.</p>
+        </div></div>
+        <div class="step"><div class="panel"><span class="tag">2 · A second source plane</span>
+          <h3>Two rings, one lens</h3>
+          <p>Add a <span class="red">second, more distant source</span> and it forms a larger ring: a double-source-plane lens.</p>
+          <div class="eq">θ<sub>E,1</sub> / θ<sub>E,2</sub> = (<span class="blue">D<sub>ds,1</sub>/D<sub>s,1</sub></span>) / (<span class="red">D<sub>ds,2</sub>/D<sub>s,2</sub></span>)</div>
+          <p>For an isothermal lens the mass cancels, and so does H<sub>0</sub>: the ratio depends only on distances, which are set by the expansion history, and so by dark energy.</p>
+        </div></div>
+        <div class="step"><div class="panel"><span class="tag">3 · The catch</span>
+          <h3>Perfect alignments are rare</h3>
+          <p>Only a handful of double-source-plane lenses are known. Their constraints are limited by the mass-sheet degeneracy, and the nearer source also lenses the farther one.</p>
+          <p>Upcoming surveys (<a href="https://rubinobservatory.org">LSST</a>, <a href="https://www.esa.int/Science_Exploration/Space_Science/Euclid">Euclid</a>, <a href="https://roman.gsfc.nasa.gov">Roman</a>) will instead find very large numbers of ordinary single-source lenses.</p>
+        </div></div>
+        <div class="step"><div class="panel"><span class="tag">4 · Pseudo double-source-plane lenses</span>
+          <h3>Two lenses, read as one</h3>
+          <p>Pair separate lenses whose deflectors are near-identical. Treat <span class="red">B's source</span> as a virtual second source behind A, and the pair can be analysed like a double-source-plane lens.</p>
+          <p>This avoids the intermediate-source problem by construction. A hierarchical model forecasts dark-energy constraints from the LSST lens sample while accounting for the mass-sheet degeneracy.</p>
+        </div></div>
+      </div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <section class="sec" id="summary">
+    <div class="wrap summary">
+      <div class="prose">
+        <p class="kicker">In short</p>
+        <h2>Rings at two distances</h2>
+        <p>When a massive galaxy lies almost exactly in front of a more distant one, it bends the distant galaxy's light into a ring. The ring's radius, the Einstein radius, depends on the lens mass and on the distances between observer, lens and source.</p>
+        <p>If a second source lies even farther behind, it forms a second, larger ring. For an isothermal lens, the ratio of the two radii no longer depends on the lens mass or on the Hubble constant, only on a ratio of distances (for other mass profiles, the profile enters too). That ratio is set by how the universe expanded, and so it measures dark energy.</p>
+        <p>These double-source-plane lenses are rare, and two effects limit them: the mass-sheet degeneracy, and the nearer source acting as a second lens for the farther one. In our paper we pair separate single-source lenses whose deflectors are near-identical, and analyse each pair as a <em>pseudo</em> double-source-plane lens. A hierarchical model forecasts the dark-energy constraints this gives from the lens sample expected from <a href="https://rubinobservatory.org">LSST</a>, accounting for the mass-sheet degeneracy.</p>
+      </div>
+      <aside class="side">
+        <h3>Paper</h3>
+        <ul class="pubs" data-pubs="tomography"></ul>
+      </aside>
+    </div>
+    <div class="wrap paperfigs">
+      <p class="kicker">From the paper</p>
+      <figure class="pfig">
+        <div class="plate paper"><span class="tag">Fig. 1</span><img src="../assets/img/papers/tomography-pseudo-dspl.png" alt="Diagram: lens 1 and lens 2 have near-identical deflectors and sources at different redshifts; combined, they form a pseudo double-source-plane lens." width="1500" height="1023" loading="lazy"></div>
+        <figcaption class="cap">Two separate lenses whose deflectors are near-identical, with sources at different redshifts, analysed together as one pseudo double-source-plane lens.
+          <span class="src">Fig. 1 of <a href="https://arxiv.org/abs/2607.01005">Sharma et al. (2026), arXiv:2607.01005</a></span></figcaption>
+      </figure>
+      <figure class="pfig narrow">
+        <div class="plate paper"><span class="tag">Fig. 8</span><img src="../assets/img/papers/tomography-forecast.jpg" alt="Corner plot of forecast constraints on Omega_m, w0, wa and lens-model parameters, comparing pseudo double-source-plane pairs from LSST year 10 with 500 double-source-plane lenses." width="1399" height="1509" loading="lazy"></div>
+        <figcaption class="cap">Forecast constraints on a flat w<sub>0</sub>w<sub>a</sub>CDM cosmology. Pairs from the ten-year LSST sample (solid contours) constrain the dark-energy parameters w<sub>0</sub> and w<sub>a</sub> significantly more tightly than 500 double-source-plane lenses (dashed), with or without an external prior on Ω<sub>m</sub>. The double-source-plane forecast is idealised: it ignores the mass of the nearer source.
+          <span class="src">Fig. 8 of <a href="https://arxiv.org/abs/2607.01005">Sharma et al. (2026), arXiv:2607.01005</a></span></figcaption>
+      </figure>
+    </div>
+    <div class="wrap pager" data-pager style="margin-top:56px"></div>
+  </section>
+</main>
+<footer class="site"></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/site.js"></script>
+<script src="../assets/viz/sketch3d.js"></script>
+<script src="../assets/viz/lensart.js"></script>
+<script src="../assets/viz/smooth.js"></script>
+<script src="../assets/viz/realsky.js"></script>
+<script src="../assets/viz/tomo.js"></script>
+<script src="../assets/viz/stage.js"></script>
+<script>
+// The camera moves between views as you scroll (keyframes in step units).
+const { Sketch } = S3, { keyframes, clipTo, place, focal, stage, stageRect, inView } = Stage;
+const tomoSec = document.getElementById('tomo'), tomoP = stage(tomoSec);
+const tomoSk = new Sketch(document.getElementById('tomoc')), tomoPlate = document.getElementById('tomoPlate');
+const TOMO_CAM = [ // z multiplies the distance that fits the whole scene in the plate
+  [0.0, { tx: -1.0, ty: 0, yaw: 0.8, pitch: 0.14, z: 0.3 }],       // close on the lens as its ring forms
+  [0.45, { tx: -0.6, ty: -0.1, yaw: 0.7, pitch: 0.16, z: 0.36 }],
+  [1.0, { tx: 0, ty: -1.1, yaw: 0.42, pitch: 0.22, z: 1 }],        // pull back: the whole line of sight
+  [1.7, { tx: 0, ty: -1.1, yaw: 0.36, pitch: 0.2, z: 1 }],
+  [2.15, { tx: 0.6, ty: -0.3, yaw: 0.25, pitch: 0.62, z: 1.02 }],  // look down on the two separate lenses
+  [2.75, { tx: 0.6, ty: -0.3, yaw: 0.2, pitch: 0.6, z: 1.02 }],
+  [3.35, { tx: 0.2, ty: 0, yaw: -1.0, pitch: 0.2, z: 0.85 }],      // swing behind the observer: rings nest, observer in view
+  [4.0, { tx: 0.2, ty: 0, yaw: -1.05, pitch: 0.18, z: 0.82 }],
+];
+function drawTomo(ms) {
+  const p = tomoP(), box = place(tomoPlate, stageRect()), W = tomoSk.w, H = tomoSk.h, compact = box.w < 500;
+  const f = focal(tomoSk), fit = Math.max(24 * f / (box.w * 0.95), 10 * f / (box.h * 0.95));
+  const k = keyframes(p, TOMO_CAM), drift = Site.reduced ? 0 : Math.sin(ms / 9000) * 0.04;
+  const insetRoom = Math.min(170, box.w * 0.24, box.h * 0.32) / H * 0.5;
+  Object.assign(tomoSk.cam, { tx: k.tx + (compact ? -1.6 * k.z : 0), ty: k.ty, yaw: k.yaw + drift, pitch: k.pitch, dist: fit * k.z,
+    ox: (box.x + box.w / 2) / W - 0.5, oy: (box.y + box.h / 2) / H - 0.5 - insetRoom });
+  tomoSk.bounds = box; tomoSk.begin(ms); clipTo(tomoSk.ctx, box); Tomo.draw(tomoSk, p, ms / 1000, { ...box, compact }); tomoSk.ctx.restore();
+}
+Site.loop(ms => { if (inView(tomoSec)) drawTomo(ms); });
+</script>
+</body>
+</html>

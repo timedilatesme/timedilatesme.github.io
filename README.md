@@ -1,4 +1,13 @@
 # timedilatesme.github.io
-<meta name="google-site-verification" content="jZorUfrRr4aAWfHDp_sQMDXJCbqUCqevE7NuhfkjU78" />
 
-Hi, I am Paras Sharma, currently a graduate student in the Department of Physics and Astronomy at Stony Brook University, NY, USA. I am mainly interested in researching galactic dynamics and understanding galactic phenomena with the help of simulations. This repository contains the code for my personal webpage, which will be updated yearly.
+Personal website of Paras Sharma, PhD student in Physics & Astronomy at Stony Brook University, working on strong gravitational lensing. Live at https://timedilatesme.github.io.
+
+A static site with no build step: plain HTML, CSS and JavaScript, served by GitHub Pages.
+
+- `assets/data.js` holds the site's facts (publications, research topics, education); pages render from it.
+- `assets/site.js` builds the nav, footer, citations and link icons; `assets/theme.js` picks light or dark mode.
+- `assets/viz/` holds the figures, ray-traced live in the browser (WebGL2).
+- `research/` has one page per research topic; copy `research/_template.html` to add one.
+- `tools/check.py` checks every arXiv entry against arXiv and every local link (`python3 tools/check.py`).
+
+To preview locally: `python3 -m http.server` in this folder, then open http://localhost:8000.

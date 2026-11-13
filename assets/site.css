@@ -1,0 +1,115 @@
+/* site.css — shared by every page. Page-specific layout lives in that page.
+   Type: one typeface everywhere, IBM Plex Sans (400, 500, 600, italic 400), in figures too.
+     Small labels (kickers, plate tags, years) are the same face in capitals, spaced out; numbers use tabular figures.
+   Themes: dark (default) and light, chosen by assets/theme.js and the toggle in the nav. Plates stay dark in both:
+   they are images of the sky, and every figure is drawn for a dark plate.
+   Colour: amber is the only interface accent; inside figures it marks highlights (caustics, light curves, sight lines).
+   Blue and red appear only inside science figures, always with the same sense: --blue the nearer source, or the
+   shorter wavelength; --red the farther source, or the longer wavelength (smaller vs larger, in both cases).
+   Two kinds of box:
+     .plate  a figure: a hairline frame with its label set into the top edge (a photographic plate).
+     .panel  text: a solid box with a hard offset shadow (down-right, no blur) that lifts on hover. */
+:root {
+  --bg:#0b0b0a; --box:#121211; --ink:#eceae4; --soft:#c4c1b9; --dim:#8b8880; --line:rgba(236,234,228,.12); --line2:#353533;
+  --amber:#f2b45a; --blue:#7fb2ff; --red:#ff7b63; --shadow:#262624; --uline:rgba(242,180,90,.5);
+  --plate:#080807; --plate-ink:#a29e95; color-scheme:dark;
+  --sans:'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --gut:clamp(20px, 5vw, 56px); --navh:60px; --wide:1160px;
+}
+:root[data-theme="light"] {
+  --bg:#f5f3ee; --box:#fffdf9; --ink:#1b1a17; --soft:#46433d; --dim:#76726a; --line:rgba(27,26,23,.12); --line2:#d4d0c7;
+  --amber:#a8650f; --blue:#2c63c6; --red:#c0402a; --shadow:#d8d3c8; --uline:rgba(168,101,15,.5); color-scheme:light;
+}
+* { box-sizing:border-box; }
+html { background:var(--bg); scroll-padding-top:calc(var(--navh) + 20px); -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--bg); color:var(--soft); font:400 16.5px/1.65 var(--sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+main { padding-top:var(--navh); }
+.wrap { max-width:var(--wide); margin-inline:auto; padding-inline:var(--gut); }
+p { margin:0 0 1em; } p:last-child { margin-bottom:0; }
+.prose { max-width:66ch; }
+a { color:var(--ink); text-decoration:underline; text-decoration-color:var(--uline); text-decoration-thickness:1px; text-underline-offset:3px; transition:color .2s ease, text-decoration-color .2s ease; }
+a:hover { color:var(--amber); text-decoration-color:var(--amber); }
+:focus-visible { outline:2px solid var(--amber); outline-offset:3px; }
+.blue { color:var(--blue); } .red { color:var(--red); } .amber { color:var(--amber); }
+h1, h2, h3 { color:var(--ink); font-family:var(--sans); font-weight:600; letter-spacing:-.01em; margin:0; }
+h1 { font-size:clamp(30px, 3.4vw, 44px); line-height:1.15; margin-bottom:18px; }
+h2 { font-size:clamp(23px, 2.2vw, 28px); line-height:1.25; margin-bottom:22px; }
+h3 { font-size:18px; line-height:1.35; margin-bottom:8px; }
+.wordmark { font-weight:600; letter-spacing:-.015em; line-height:1.1; }
+.kicker { font:500 12px/1.4 var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--dim); margin:0 0 12px; }
+.kicker .n { color:var(--amber); margin-right:10px; }
+.kicker a { color:inherit; text-decoration-color:var(--line2); } .kicker a:hover { color:var(--amber); }
+.kicker, .tag, .cite .v { font-variant-numeric:tabular-nums; }
+section.sec { padding-block:clamp(64px, 10vh, 104px); }
+section.sec + section.sec { border-top:1px solid var(--line); }
+.sechead { display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:28px; }
+.sechead h2 { margin:0; }
+.more { font:500 14px var(--sans); text-decoration:none; color:var(--soft); white-space:nowrap; }
+.more:hover { color:var(--amber); }
+.todo { color:var(--amber); font:12px var(--sans); border:1px dashed var(--amber); padding:1px 6px; }
+
+/* link icons (added by site.js): the SVG is used as a mask, so the icon takes the link's colour */
+.ico { display:inline-block; flex:none; width:1.05em; height:1.05em; margin-right:.42em; vertical-align:-.17em; background:currentColor; -webkit-mask:var(--i) center/contain no-repeat; mask:var(--i) center/contain no-repeat; }
+.links { display:flex; flex-wrap:wrap; gap:10px 22px; font:500 14.5px/1.4 var(--sans); }
+.links a { display:inline-flex; align-items:center; text-decoration:none; color:var(--soft); }
+.links a:hover { color:var(--amber); }
+.links .ico { vertical-align:0; }
+
+/* ---------- boxes ---------- */
+.plate { position:relative; border:1px solid var(--line2); background:var(--plate); }
+.tag { position:absolute; top:-8px; left:14px; z-index:2; background:var(--bg); padding:0 8px; font:500 10.5px/16px var(--sans); color:var(--dim); letter-spacing:.12em; white-space:nowrap; text-transform:uppercase; }
+.cap { font:13.5px/1.6 var(--sans); color:var(--dim); }
+.cap .credit { display:block; margin-top:6px; font-size:12.5px; opacity:.85; }
+.cap .credit a { color:inherit; text-decoration:underline; text-decoration-color:var(--line2); text-underline-offset:2px; }
+.cap .credit a:hover { color:var(--amber); }
+.panel { position:relative; display:block; background:var(--box); border:1px solid var(--line2); box-shadow:5px 5px 0 var(--shadow); padding:22px 24px 20px;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+a.panel { color:inherit; text-decoration:none; }
+a.panel:hover, .panel.lift:hover { transform:translate(-2px, -3px); border-color:var(--amber); box-shadow:7px 7px 0 var(--amber); }
+.panel > .tag { position:static; display:block; padding:0; margin:0 0 8px; background:none; color:var(--amber); }
+.panel p { font-size:15.5px; line-height:1.6; }
+
+/* ---------- citations (one format everywhere; rendered by site.js from DATA.pubs) ---------- */
+ul.pubs { list-style:none; padding:0; margin:0; }
+.cite { padding:18px 0; border-bottom:1px solid var(--line); font-size:15px; line-height:1.55; }
+.cite:first-child { padding-top:0; } .cite:last-child { border-bottom:0; padding-bottom:0; }
+.cite .t { display:block; color:var(--ink); font-weight:500; font-size:16px; line-height:1.45; margin-bottom:4px; }
+.cite .au { display:block; color:var(--soft); } .cite .au b { color:var(--ink); font-weight:600; }
+.cite .v { font-size:14px; color:var(--dim); }
+.cite .pl { display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:7px; font:500 13.5px/1.4 var(--sans); }
+.cite .pl a { display:inline-flex; align-items:center; text-decoration:none; color:var(--soft); } .cite .pl a:hover { color:var(--amber); }
+.cite .pl .ico { vertical-align:0; }
+.kind { display:inline-block; font:500 10px/1.5 var(--sans); letter-spacing:.1em; color:var(--dim); border:1px solid var(--line2); padding:0 6px; margin-right:8px; text-transform:uppercase; vertical-align:2px; }
+
+/* ---------- nav + footer (rendered by site.js) ---------- */
+nav.site { position:fixed; top:0; left:0; right:0; z-index:40; height:var(--navh); background:var(--bg); border-bottom:1px solid var(--line); }
+nav.site .wrap { height:100%; display:flex; align-items:center; gap:24px; }
+nav.site .me { margin-right:auto; font:600 16px/1 var(--sans); letter-spacing:-.01em; color:var(--ink); text-decoration:none; }
+nav.site .me:hover { color:var(--amber); }
+nav.site .links-nav { display:flex; gap:28px; }
+nav.site .links-nav a { font:500 14.5px/1 var(--sans); color:var(--dim); text-decoration:none; padding-block:6px; }
+nav.site .links-nav a:hover, nav.site .links-nav a.on { color:var(--ink); }
+nav.site .links-nav a.on { box-shadow:inset 0 -2px 0 var(--amber); }
+footer.site { border-top:1px solid var(--line); padding-block:32px; font:400 14px/1.5 var(--sans); color:var(--dim); }
+footer.site .wrap { display:flex; flex-wrap:wrap; gap:12px 28px; align-items:center; }
+footer.site .links { margin-right:auto; }
+footer.site .updated { color:var(--dim); }
+
+@media (max-width:820px) {
+  body { font-size:16px; }
+  .panel { padding:18px 18px 16px; }
+}
+nav.site .me .short { display:none; }
+@media (max-width:560px) {
+  nav.site .me .full { display:none; } nav.site .me .short { display:inline; }
+  nav.site .wrap { gap:16px; } nav.site .links-nav { gap:16px; } nav.site .links-nav a { font-size:13.5px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition:none !important; animation:none !important; } }
+
+/* ---------- theme toggle (in the nav, added by site.js) ---------- */
+nav.site .theme { display:inline-grid; place-items:center; width:32px; height:32px; margin-left:4px; padding:0; border:1px solid var(--line2); background:transparent; color:var(--dim); cursor:pointer; transition:color .2s, border-color .2s; }
+nav.site .theme:hover { color:var(--amber); border-color:var(--amber); }
+nav.site .theme svg { width:16px; height:16px; }
+nav.site .theme .sun, :root[data-theme="light"] nav.site .theme .moon { display:none; }
+:root[data-theme="light"] nav.site .theme .sun { display:block; }
+@media (max-width:560px) { nav.site .theme { width:28px; height:28px; margin-left:0; } }

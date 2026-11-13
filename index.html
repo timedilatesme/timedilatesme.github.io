@@ -1,248 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paras Sharma</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paras Sharma · Strong gravitational lensing</title>
+<meta name="description" content="Paras Sharma, PhD student in Physics & Astronomy at Stony Brook University, working on strong gravitational lensing with Prof. Simon Birrer.">
+<meta property="og:title" content="Paras Sharma"><meta property="og:description" content="PhD student at Stony Brook University working on strong gravitational lensing.">
+<meta property="og:image" content="assets/img/photo.jpg"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* ---------- intro: a large portrait, set as a photographic plate (label on the top edge, notes along the bottom,
+     registration ticks at the corners), beside who I am ---------- */
+  .hero { display:grid; grid-template-columns:minmax(240px, 380px) minmax(0, 1fr); gap:clamp(40px, 6vw, 96px); align-items:center; padding-block:clamp(48px, 9vh, 104px) clamp(56px, 9vh, 96px); }
+  .portrait { margin:0; padding:12px 12px 0; }
+  .portrait img { display:block; width:100%; height:auto; filter:grayscale(1) contrast(1.06); }
+  .portrait .notes { display:flex; justify-content:space-between; gap:12px; padding:11px 2px 12px; font:500 10.5px/1.3 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--plate-ink); }
+  .portrait .notes b { font-weight:500; color:#d9d5cb; }
+  .portrait .tick { position:absolute; width:14px; height:14px; border:0 solid var(--amber); opacity:.75; }
+  .portrait .tl { top:-1px; left:-1px; border-width:2px 0 0 2px; } .portrait .tr { top:-1px; right:-1px; border-width:2px 2px 0 0; }
+  .portrait .bl { bottom:-1px; left:-1px; border-width:0 0 2px 2px; } .portrait .br { bottom:-1px; right:-1px; border-width:0 2px 2px 0; }
+  .who h1 { font-size:clamp(40px, 5vw, 64px); margin:0 0 20px; }
+  .who .kicker { margin:0 0 18px; }
+  .lede { font-size:clamp(17px, 1.4vw, 19.5px); line-height:1.7; color:var(--soft); margin-bottom:30px; max-width:62ch; }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap"
-        rel="stylesheet">
+  /* ---------- the featured figure: a lens you can turn around, with its story beside it ---------- */
+  .feature { border-top:1px solid var(--line); }
+  .feature .wrap { display:grid; grid-template-columns:minmax(0, 1.15fr) minmax(0, 0.85fr); gap:clamp(36px, 5vw, 80px); align-items:center; }
+  .viz { margin:0; }
+  .viz .plate { aspect-ratio:1 / 1; }
+  .viz canvas { position:absolute; inset:0; width:100%; height:100%; display:block; cursor:grab; touch-action:pan-y; }
+  .viz canvas:active { cursor:grabbing; }
+  .feattext h2 { margin-bottom:16px; }
+  .feattext p { max-width:52ch; }
+  .feattext .hint { color:var(--ink); font-weight:500; }
+  .feattext .cap { margin-top:22px; }
 
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  /* ---------- research cards ---------- */
+  /* cards come from DATA.research: any number of them fill the grid, three across on a wide screen */
+  .rgrid { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:28px; }
+  .rcard { display:flex; flex-direction:column; padding:0; }
+  .rcard .thumb { position:relative; aspect-ratio:4 / 3; border-bottom:1px solid var(--line2); background:var(--plate); overflow:hidden; }
+  .rcard .thumb img { display:block; width:100%; height:100%; object-fit:cover; }
+  .rcard .body { padding:18px 20px 20px; display:flex; flex-direction:column; flex:1; }
+  .rcard .n { font:500 11.5px/1.4 var(--sans); color:var(--amber); letter-spacing:.12em; text-transform:uppercase; margin-bottom:8px; }
+  .rcard p { color:var(--soft); margin:0 0 16px; font-size:15px; line-height:1.6; }
+  .rcard .go { margin-top:auto; font:500 14px var(--sans); color:var(--dim); transition:color .2s; }
+  .rcard:hover .go { color:var(--amber); }
+  .narrow { max-width:860px; }
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- Defer JS execution -->
-    <script src="assets/js/script.js" defer></script>
+  @media (max-width:960px) {
+    .hero, .feature .wrap { grid-template-columns:1fr; }
+    .portrait { max-width:320px; width:100%; justify-self:center; } /* centred above the text on a phone */
+    .feattext { order:-1; }
+  }
+</style>
 </head>
-
 <body>
+<nav class="site"></nav>
+<main>
+  <header class="wrap hero">
+    <figure class="plate portrait">
+      <span class="tag">Plate 001 · Portrait</span>
+      <img src="assets/img/photo.jpg" alt="Portrait of Paras Sharma" width="900" height="900">
+      <figcaption class="notes"><b>P. Sharma</b><span>Stony Brook, NY</span></figcaption>
+      <i class="tick tl"></i><i class="tick tr"></i><i class="tick bl"></i><i class="tick br"></i>
+    </figure>
+    <div class="who">
+      <p class="kicker">PhD student · <a class="noico" href="https://www.stonybrook.edu">Stony Brook University</a></p>
+      <h1 class="wordmark">Paras Sharma</h1>
+      <p class="lede">I work with <a href="https://sibirrer.github.io">Prof. Simon Birrer</a> on strong gravitational lensing, where a massive galaxy bends the light of a more distant source into arcs, rings and multiple images. I study how these lenses can constrain dark energy and probe the accretion disks of quasars, and I help develop <a href="https://github.com/LSST-strong-lensing/slsim">SLSim</a>, which simulates the lenses that surveys such as <a href="https://rubinobservatory.org">Rubin LSST</a>, <a href="https://www.esa.int/Science_Exploration/Space_Science/Euclid">Euclid</a> and <a href="https://roman.gsfc.nasa.gov">Roman</a> will find.</p>
+      <div class="links">
+        <a href="mailto:paras.sharma@stonybrook.edu">Email</a>
+        <a href="assets/docs/Paras_CV.pdf">CV</a>
+        <a href="https://scholar.google.com/citations?user=45Pod_4AAAAJ">Google Scholar</a>
+        <a href="https://github.com/timedilatesme">GitHub</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Starry Background Containers -->
-    <div class="stars stars-1"></div>
-    <div class="stars stars-2"></div>
-    <div class="stars stars-3"></div>
-
-    <header class="site-header">
-        <div class="header-content">
-            <!-- Info on the left -->
-            <div class="personal-info">
-                <h1>Paras SHARMA</h1>
-                <p>Graduate Student | SBU, NY, USA</p>
-                <div class="contact-info">
-                    <span><i class="fas fa-envelope icon-contact"></i> <a
-                            href="mailto:paras.sharma@stonybrook.edu">paras.sharma@stonybrook.edu</a></span>
-                    <!-- <span><i class="fas fa-phone icon-contact"></i> <a href="tel:+1XXXXXXXXXX">+1 (XXX)
-                            XXX-XXXX</a></span> -->
-                    <!-- <span><i class="fas fa-globe icon-contact"></i> <a href="https://timedilatesme.github.io" -->
-                    <!-- target="_blank" rel="noopener noreferrer">timedilatesme.github.io</a></span> -->
-                </div>
-            </div>
-            <!-- Controls and Social on the right -->
-            <div class="controls-social">
-                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
-                    <i class="fas fa-sun"></i>
-                </button>
-                <nav class="social-links">
-                    <!-- <a href="mailto:XXXX@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email"><i
-                            class="fas fa-envelope icon-social"></i></a> -->
-                    <a href="https://scholar.google.co.in/citations?user=45Pod_4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Scholar"><i
-                            class="fab fa-google icon-social"></i></a>
-                    <a href="https://github.com/timedilatesme" target="_blank" rel="noopener noreferrer"
-                        aria-label="GitHub"><i class="fab fa-github icon-social"></i></a>
-                    <a href="https://linkedin.com/in/nutanstrek/" target="_blank" rel="noopener noreferrer"
-                        aria-label="LinkedIn"><i class="fab fa-linkedin icon-social"></i></a>
-                    <a href="https://twitter.com/time_dilates_me" target="_blank" rel="noopener noreferrer"
-                        aria-label="Twitter"><i class="fab fa-twitter icon-social"></i></a>
-                    <a href="https://www.instagram.com/time_dilates_me/" target="_blank" rel="noopener noreferrer"
-                        aria-label="Instagram"><i class="fab fa-instagram icon-social"></i></a>
-                </nav>
-            </div>
+  <section class="sec feature">
+    <div class="wrap">
+      <figure class="viz">
+        <div class="plate"><span class="tag">A lens with two sources</span>
+          <canvas id="heroc" role="img" tabindex="0" aria-label="A ray-traced image of a gravitational lens: a foreground galaxy bends the light of two more distant galaxies into a blue inner ring and red outer arcs. The galaxies are real Hubble images. Drag, or use the arrow keys, to see the three galaxies in 3D."></canvas>
         </div>
-    </header>
+      </figure>
+      <div class="feattext">
+        <p class="kicker">Ray-traced live</p>
+        <h2>A lens with two sources</h2>
+        <p>One galaxy bends the light of two more distant ones into rings, as a deep telescope image would show it. The nearer source makes the smaller ring, the farther one the larger: comparing the two is the idea behind strong lensing tomography.</p>
+        <p class="hint" id="heroHint">Drag the image to move off the line of sight: the rings break into arcs, and the three galaxies separate in 3D.</p>
+        <p class="cap">Every galaxy here, the lens, both sources and the field behind them, is a real one from the Hubble Ultra Deep Field; only their arrangement is simulated, with distances along the line of sight compressed. Images: <a href="https://esahubble.org/images/heic0406a/">NASA, ESA, S. Beckwith (STScI) and the HUDF Team</a>, CC BY 4.0.</p>
+      </div>
+    </div>
+  </section>
 
-    <main>
-        <section id="hero" class="hero-section">
-            <img src="assets/img/photo.jpg" alt="Paras Sharma" class="profile-pic">
-            <p class="intro-text">Navigating the cosmos through data and simulation.</p>
-        </section>
+  <section class="sec" id="research">
+    <div class="wrap">
+      <div class="sechead"><h2>Research</h2></div>
+      <div class="rgrid" id="rgrid"></div>
+    </div>
+  </section>
 
-        <section id="timeline" class="timeline-section">
-            <h2>My Journey Through Spacetime</h2>
-            <div class="timeline-container">
-                <div class="timeline-line"></div>
+  <section class="sec">
+    <div class="wrap"><div class="narrow">
+      <div class="sechead"><h2>Selected publications</h2><a class="more" href="publications.html">All publications →</a></div>
+      <ul class="pubs" data-pubs="selected"></ul>
+    </div></div>
+  </section>
+</main>
+<footer class="site"></footer>
 
-                <!-- === TIMELINE EVENTS START (Populated from CV - Reverse Chronological) === -->
+<script src="assets/data.js"></script>
+<script>
+  // research cards come from DATA.research (assets/data.js): to add one, add an entry there and its page in research/
+  document.getElementById('rgrid').innerHTML = DATA.research.map(r => `
+    <a class="panel rcard noico" href="research/${r.slug}.html">
+      ${r.thumb ? `<div class="thumb" data-thumb="${r.thumb}" role="img" aria-label="${r.alt}"></div>`
+        : `<div class="thumb"><img src="${r.img}" alt="${r.alt}" width="960" height="720" loading="lazy"></div>`}
+      <div class="body"><span class="n">${r.area}</span><h3>${r.title}</h3><p>${r.text}</p><span class="go">${r.explainer ? 'Read the explainer' : 'Read more'} →</span></div>
+    </a>`).join('');
+</script>
+<script src="assets/site.js"></script>
+<script src="assets/viz/sketch3d.js"></script>
+<script src="assets/viz/lensart.js"></script>
+<script src="assets/viz/realsky.js"></script>
+<script src="assets/viz/microlens.js"></script>
+<script src="assets/viz/hero.js"></script>
+<script src="assets/viz/thumbs.js"></script>
+<script>
+// ---------- research cards: live drawings (thumbs.js) ----------
+document.querySelectorAll('[data-thumb]').forEach(el => Thumbs.mount(el, el.dataset.thumb));
 
-                <!-- --- Stony Brook University --- -->
-                <div class="timeline-event education-event observed">
-                    <div class="timeline-marker"></div> <!-- Marker is now a diamond via CSS -->
-                    <div class="timeline-content">
-                        <span class="timeline-date">Aug 2023 - Present</span>
-                        <h3>Stony Brook University</h3>
-                        <p>Ph.D. in Physics & Astronomy (Transferred from M.A.)</p>
-                        <small>CGPA: 3.96/4</small>
-                        <!-- Research Branch at SBU -->
-                        <div class="timeline-branch research-event">
-                            <div class="timeline-branch-content">
-                                <span class="timeline-date">Feb 2025 - Present</span>
-                                <h4>Research: Gravitational Lensing</h4>
-                                <p>Supervisor: Prof. Simon Birrer</p>
-                                <ul>
-                                    <li>Quasar Microlensing.</li>
-                                </ul>
-                                </div>
-                                </div>
-                                <div class="timeline-branch research-event">
-                                    <div class="timeline-branch-content">
-                                        <span class="timeline-date">Aug 2023 - Feb 2025</span>
-                                <h4>Research: Galactic Dynamics & Pattern Speed</h4>
-                                <p>Supervisor: Prof. Jin Koda</p>
-                                <ul>
-                                    <li>Using N-body hydrodynamic simulation data.</li>
-                                    <li>Quantifying Tremaine-Weinberg method validity.</li>
-                                    <li>Analyzing spatial variation of pattern speed.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- --- IIT Delhi --- -->
-                <div class="timeline-event education-event">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">July 2019 – May 2023</span>
-                        <h3>IIT Delhi, India</h3>
-                        <p>Bachelor of Technology in Engineering Physics</p>
-                        <small>CGPA: 9.382/10 | Dept. Rank 1</small>
-                        <!-- Awards during IITD -->
-                        <div class="timeline-branch achievement-event">
-                            <div class="timeline-branch-content">
-                                <span class="timeline-date">2023</span>
-                                <h4>Institute Silver Medal</h4>
-                                <p>Awarded for highest GPA in Physics Dept.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-branch achievement-event">
-                            <div class="timeline-branch-content">
-                                <span class="timeline-date">Multiple</span>
-                                <h4>Institute Merit Award</h4>
-                                <p>Top 7% in Institute for five semesters.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-branch achievement-event">
-                            <div class="timeline-branch-content">
-                                <span class="timeline-date">2021</span>
-                                <h4>Mudit Sharma Scholarship</h4>
-                                <p>Awarded for highest GPA in the Dept.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-branch achievement-event">
-                            <div class="timeline-branch-content">
-                                <span class="timeline-date">2021</span>
-                                <h4>B-83 Scholarship</h4>
-                                <p>Awarded by 1983 alumni for Academic Excellence.</p>
-                            </div>
-                        </div>
-                        <!-- Research during IITD (overlaps SBU start) -->
-                        <div class="timeline-branch research-event">
-                            <div class="timeline-branch-content">
-                                <span class="timeline-date">Aug 2022 – Aug 2024</span>
-                                <h4>Research: Galactic Magnetic Fields</h4>
-                                <p>Supervisors: Prof. Suprit Singh (IITD), Dr. Sunil Malik (Potsdam)</p>
-                                <ul>
-                                    <li>Mapping NVSS/SDSS quasars for Mg-II absorbers.</li>
-                                    <li>Probing B-fields via RRM (0.38 < z < 2.3).</li>
-                                    <li>Analyzing RM radial profiles.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Toronto Internship during IITD -->
-                        <div class="timeline-branch research-event">
-                            <div class="timeline-branch-content">
-                                <span class="timeline-date">May 2022 - Aug 2022</span>
-                                <h4>Research: Neutral ISM (U. Toronto)</h4>
-                                <p>Supervisors: Prof. Peter G. Martin, Dr. Antoine Marchal</p>
-                                <small>Mitacs GRI Scholar</small>
-                                <ul>
-                                    <li>Analyzed GHIGLS HI survey data using ROHSA.</li>
-                                    <li>Assessed gas distribution & properties.</li>
-                                    <li>Compared HI with dust (Herschel) & CO data.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- SURA Award during IITD -->
-                        <div class="timeline-branch achievement-event">
-                            <div class="timeline-branch-content">
-                                <span class="timeline-date">2021</span>
-                                <h4>Summer UGrad Research Award</h4>
-                                <p>Awarded by IRD-IIT Delhi.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- --- International Physics Olympiad --- -->
-                <div class="timeline-event achievement-event">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Jan 2021</span>
-                        <h3>Intl. Theoretical Physics Olympiad</h3>
-                        <p>Rank 12 (out of 150+ teams)</p>
-                        <small>Solved rigorous physics problems under time constraints.</small>
-                    </div>
-                </div>
-
-                <!-- --- University Physics Competition --- -->
-                <div class="timeline-event achievement-event">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Nov 2020</span>
-                        <h3>University Physics Competition</h3>
-                        <p>Silver Medal (Rank 12 / 244 teams)</p>
-                        <small>Co-authored "Ion Thrusters to Saturn".</small>
-                    </div>
-                </div>
-
-                <!-- --- Navyug Convent School & IIT-JEE --- -->
-                <div class="timeline-event education-event">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 2017 - Mar 2019</span>
-                        <h3>Navyug Convent School</h3>
-                        <p>Senior High School Education</p>
-                        <small>Percentage: 90.4%</small>
-                        <!-- IIT-JEE Achievement -->
-                        <div class="timeline-branch achievement-event">
-                            <div class="timeline-branch-content">
-                                <span class="timeline-date">2019</span>
-                                <h4>IIT-JEE 2019</h4>
-                                <p>Ranked in Top 0.2% (of 1.2M students).</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- === END TIMELINE EVENTS === -->
-
-            </div> <!-- /timeline-container -->
-        </section>
-
-    </main>
-
-    <footer class="site-footer-bottom">
-        <p>© <span id="year"></span> Paras Sharma. All rights reserved.</p>
-    </footer>
-
+// ---------- hero: the observer's view of a lens; drag to see the galaxies behind it in 3D (hero.js) ----------
+const heroc = document.getElementById('heroc'), hero = Hero.mount(heroc, { reduced: Site.reduced });
+if (matchMedia('(hover: none)').matches) document.getElementById('heroHint').textContent = 'Drag sideways across the image to move off the line of sight: the rings break into arcs, and the three galaxies separate in 3D.';
+const heroVisible = () => { const r = heroc.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
+Site.loop(ms => { if (heroVisible()) hero.draw(ms); });
+</script>
 </body>
-
 </html>

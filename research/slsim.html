@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLSim · Paras Sharma</title>
+<meta name="description" content="SLSim, an open-source package that simulates populations of strong gravitational lenses as observatories such as Rubin LSST, Euclid and Roman will see them.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/explainer.css">
+</head>
+<body data-topic="slsim">
+<nav class="site"></nav>
+<main>
+  <header class="wrap intro">
+    <a class="crumb" href="../index.html#research">← All research</a>
+    <p class="kicker" data-topic-kicker></p>
+    <h1>SLSim</h1>
+    <p class="lede prose">An open-source package that simulates populations of strong lenses as observatories such as the <a href="https://rubinobservatory.org">Rubin Observatory</a>'s LSST, <a href="https://www.esa.int/Science_Exploration/Space_Science/Euclid">Euclid</a> and <a href="https://roman.gsfc.nasa.gov">Roman</a> will see them, including lenses that change over time. I'm one of its lead developers.</p>
+    <div class="links"><a href="https://github.com/LSST-strong-lensing/slsim">GitHub</a><a href="https://slsim.readthedocs.io">Documentation</a><a href="https://arxiv.org/abs/2603.17138">arXiv:2603.17138</a><a href="https://ascl.net/2608.001">ascl:2608.001</a></div>
+    <p class="hint"><span>↓ Scroll to step through the figure (4 steps)</span><a href="#summary">Skip to the summary</a></p>
+  </header>
+
+  <section class="stage" id="slsim" style="height:480vh">
+    <div class="pin">
+      <canvas class="sk" id="slc"></canvas>
+      <div class="plate live" id="slPlate"><span class="tag">Fig. III · SLSim</span><span class="cap" id="slCap">illustration · toy galaxies and lens models, not SLSim output</span></div>
+      <div class="steps">
+        <div class="step"><div class="panel"><span class="tag">1 · A population</span>
+          <h3>Lenses come in populations</h3>
+          <p>Forecasts like the one for lensing tomography need the whole population of lenses a survey will find, not one lens. SLSim builds it: it draws deflector and source galaxies from population models through a cosmological volume, and keeps the configurations that produce strong lensing.</p>
+        </div></div>
+        <div class="step"><div class="panel"><span class="tag">2 · The rare alignments</span>
+          <h3>A few line up</h3>
+          <p>Seen from the observer, only a small fraction of galaxies sit close enough behind a massive foreground galaxy to be strongly lensed. These <span class="amber">sight lines</span> are the lenses.</p>
+          <p>Sources can be static, like galaxies, or variable, like lensed quasars and supernovae.</p>
+        </div></div>
+        <div class="step"><div class="panel"><span class="tag">3 · Across observatories</span>
+          <h3>One population, many telescopes</h3>
+          <p>Each system is then simulated as a given observatory would record it: its pixels, its resolution, its noise and its cadence. From the ground, the Rubin Observatory's LSST is limited by the blurring of the atmosphere; from space, Euclid and Roman see much sharper.</p>
+        </div></div>
+        <div class="step"><div class="panel"><span class="tag">4 · Lenses that change</span>
+          <h3>Time delays</h3>
+          <p>Some lensed sources vary: quasars flicker, and supernovae brighten and fade. Every image shows the same event, but the light of each image takes a different path, so the images change one after another.</p>
+          <p>These time delays, days to months for a galaxy-scale lens, depend on cosmological distances and so on H<sub>0</sub>.</p>
+        </div></div>
+      </div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <section class="sec" id="summary">
+    <div class="wrap summary">
+      <div class="prose">
+        <p class="kicker">In short</p>
+        <h2>Simulating the lenses surveys will find</h2>
+        <p>New surveys will find very large numbers of strong lenses. To plan how to find and use them, we need realistic simulated samples: the right mix of deflectors and sources, at the right distances, imaged the way each telescope would image them.</p>
+        <p>SLSim draws deflector and source galaxies from population models through a cosmological volume and keeps the configurations that produce strong lensing. It then simulates each system as a given observatory would record it. The <a href="https://rubinobservatory.org">Rubin Observatory</a>'s LSST, <a href="https://www.esa.int/Science_Exploration/Space_Science/Euclid">Euclid</a> and <a href="https://roman.gsfc.nasa.gov">Roman</a> are supported out of the box, and other observatories can be added. Sources can be static galaxies or variable ones: lensed quasars and supernovae, with their time delays.</p>
+        <p>The simulated samples are used to train and test lens searches and analysis pipelines, and to forecast what each survey's sample can measure. SLSim grew out of the LSST <a href="https://sites.google.com/view/lsst-stronglensing">Strong Lensing</a> and <a href="https://lsstdesc.org">Dark Energy</a> Science Collaborations. It is open source, and contributions are welcome.</p>
+      </div>
+      <aside class="side">
+        <h3>Code</h3>
+        <div class="links"><a href="https://github.com/LSST-strong-lensing/slsim">GitHub</a><a href="https://slsim.readthedocs.io">Documentation</a></div>
+        <h3>Paper and software record</h3>
+        <ul class="pubs" data-pubs="slsim"></ul>
+      </aside>
+    </div>
+
+    <!-- SLSim figures go here when they are ready: a <section> of <figure class="plate"> elements, each with a <span class="tag"> and a <figcaption class="cap">. -->
+
+    <div class="wrap pager" data-pager style="margin-top:56px"></div>
+  </section>
+</main>
+<footer class="site"></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/site.js"></script>
+<script src="../assets/viz/sketch3d.js"></script>
+<script src="../assets/viz/lensart.js"></script>
+<script src="../assets/viz/smooth.js"></script>
+<script src="../assets/viz/realsky.js"></script>
+<script src="../assets/viz/slsim.js"></script>
+<script src="../assets/viz/stage.js"></script>
+<script>
+// A light cone of galaxies -> the aligned few -> the same lenses as three observatories image them -> a lensed supernova
+const { Sketch, clamp, ease } = S3, { keyframes, clipTo, place, focal, stage, stageRect, aim, inView } = Stage;
+const slSec = document.getElementById('slsim'), slP = stage(slSec);
+const slSk = new Sketch(document.getElementById('slc')), slPlate = document.getElementById('slPlate'), slCap = document.getElementById('slCap');
+function drawSL(ms) {
+  const p = slP(), box = place(slPlate, stageRect()), H = slSk.h, m = Math.min(box.w, box.h);
+  slSk.cam.fov = 0.9; const f = focal(slSk);
+  const fit = Math.max(27 * f / (box.w * 0.92), 17 * f / (box.h * 0.92));
+  const fov = fpx => 2 * Math.atan((H / 2) / fpx);
+  const ax = fov(0.44 * m / (SLS.OPEN * SLS.XMAX / (SLS.XMAX + 0.5))); // the cone's far rim just fits
+  const fz = fov(0.32 * m * (SLS.ZOOM.d[0] + 0.5) / 0.9);              // the zoomed lens fills ~2/3 of the plate
+  Object.assign(slSk.cam, keyframes(p, SLS.camera(p, fit, ax, fz))); aim(slSk, box);
+  const M = ease(clamp((p - 2.0) / 0.55, 0, 1));
+  slCap.textContent = M < 0.5 ? 'illustration · a light cone of toy galaxies' : 'illustration · toy models; resolutions approximate; not SLSim output';
+  slSk.bounds = box; slSk.begin(ms); clipTo(slSk.ctx, box);
+  if (M < 0.25) SLS.scene(slSk, p, 1 - M * 4); // the 3D scene is gone before the mosaic tiles arrive
+  if (M > 0.25) SLS.mosaic(slSk, p, ms / 1000, box, M);
+  slSk.ctx.restore();
+}
+Site.loop(ms => { if (inView(slSec)) drawSL(ms); });
+</script>
+</body>
+</html>

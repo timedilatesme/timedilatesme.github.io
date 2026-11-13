@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Paras Sharma</title>
+<meta name="description" content="About Paras Sharma: research, collaborations and education.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .me { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 300px); gap:clamp(36px, 6vw, 88px); align-items:start; }
+  .me figure { margin:0; padding:8px; }
+  .me img { display:block; width:100%; height:auto; filter:grayscale(1) contrast(1.05); }
+  .me .links { margin-top:28px; }
+  .edu { list-style:none; padding:0; margin:0; display:grid; gap:24px; max-width:820px; }
+  .edu .panel { display:grid; grid-template-columns:150px minmax(0, 1fr); gap:6px 28px; }
+  .edu .yrs { font:500 13px/1.6 var(--sans); color:var(--amber); padding-top:2px; }
+  .edu h3 { margin-bottom:2px; }
+  .edu .where { color:var(--soft); margin:0 0 10px; }
+  .edu ul { margin:0; padding-left:18px; color:var(--soft); font-size:15px; line-height:1.6; display:grid; gap:4px; }
+  .edu .where a { color:var(--soft); }
+  .edu li::marker { color:var(--dim); }
+  @media (max-width:760px) {
+    .me { grid-template-columns:1fr; } .me figure { max-width:260px; width:100%; order:-1; justify-self:center; }
+    .edu .panel { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<nav class="site"></nav>
+<main>
+  <section class="sec">
+    <div class="wrap me">
+      <div class="prose">
+        <p class="kicker">About</p>
+        <h1>Hi, I'm Paras.</h1>
+        <p>I'm a PhD student in Physics &amp; Astronomy at <a href="https://www.stonybrook.edu">Stony Brook University</a>, working with <a href="https://sibirrer.github.io">Prof. Simon Birrer</a> on strong gravitational lensing: using it to constrain dark energy and to study quasar accretion disks, and building the simulations behind both. I'm a member of the <a href="https://lsstdesc.org">LSST Dark Energy Science Collaboration</a> (DESC) and the <a href="https://sites.google.com/view/lsst-stronglensing">LSST Strong Lensing Science Collaboration</a> (SLSC), and one of the lead developers of <a href="https://github.com/LSST-strong-lensing/slsim">SLSim</a>.</p>
+        <p>In my first two years at Stony Brook I worked with <a href="https://www.astro.sunysb.edu/koda/Stony_Brook/Jin_KODA.html">Prof. Jin Koda</a> on the dynamics of barred spiral galaxies, and how the pattern speed of a bar varies with radius.</p>
+        <p>I studied Engineering Physics at <a href="https://home.iitd.ac.in">IIT Delhi</a>, where I worked with <a href="https://supritsingh.github.io">Prof. Suprit Singh</a> on <a href="research/magnetic-fields.html">magnetic fields around distant galaxies</a>, measured with background quasars. With him I later took part in <a href="research/corona.html">polarimetry of the solar corona</a> during the total solar eclipse of 8 April 2024. In the summer of 2022 I studied the neutral interstellar medium with <a href="https://www.cita.utoronto.ca/~pgmartin/">Prof. Peter G. Martin</a> and Dr. Antoine Marchal at the <a href="https://www.cita.utoronto.ca">Canadian Institute for Theoretical Astrophysics</a>, as a Mitacs Globalink Research Intern.</p>
+        <!-- TODO (owner): a few lines in your own voice: what got you into astronomy, what you do off the clock. -->
+        <div class="links"><a href="mailto:paras.sharma@stonybrook.edu">paras.sharma@stonybrook.edu</a><a href="assets/docs/Paras_CV.pdf">CV (PDF)</a></div>
+      </div>
+      <figure class="plate"><span class="tag">Portrait</span><img src="assets/img/photo.jpg" alt="Portrait of Paras Sharma" width="900" height="900"></figure>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap"><div style="max-width:820px">
+      <div class="sechead"><h2>Education</h2><a class="more" href="assets/docs/Paras_CV.pdf">Full CV →</a></div>
+      <ol class="edu" id="edu"></ol>
+    </div></div>
+  </section>
+</main>
+<footer class="site"></footer>
+
+<script src="assets/data.js"></script>
+<script>
+  // education comes from DATA.education (assets/data.js); its notes may contain links
+  document.getElementById('edu').innerHTML = DATA.education.map(e => `<li><article class="panel">
+    <span class="yrs">${e.years}</span>
+    <div><h3>${e.degree}</h3><p class="where">${e.url ? `<a href="${e.url}">${e.place}</a>` : e.place}</p><ul>${e.notes.map(n => `<li>${n}</li>`).join('')}</ul></div>
+  </article></li>`).join('');
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publications · Paras Sharma</title>
+<meta name="description" content="Publications, software and conference abstracts by Paras Sharma.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .bar, .yr { max-width:880px; }
+  .bar { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px; margin:28px 0 20px; }
+  .filters { display:inline-flex; border:1px solid var(--line2); }
+  .filters button { font:500 12px/1 var(--sans); letter-spacing:.06em; color:var(--soft); background:transparent; border:0; padding:9px 14px; cursor:pointer; transition:color .2s, background .2s; }
+  .filters button + button { border-left:1px solid var(--line2); }
+  .filters button:hover { color:var(--amber); }
+  .filters button[aria-pressed="true"] { color:var(--bg); background:var(--amber); }
+  .yr { display:grid; grid-template-columns:88px minmax(0, 1fr); gap:0 24px; border-top:1px solid var(--line); padding-block:22px; }
+  .yr > .y { font:500 14px/1.6 var(--sans); color:var(--amber); }
+  @media (max-width:640px) { .yr { grid-template-columns:1fr; gap:10px; } }
+</style>
+</head>
+<body>
+<nav class="site"></nav>
+<main>
+  <section class="sec">
+    <div class="wrap">
+      <p class="kicker">Publications</p><h1>Papers and software</h1>
+      <div class="bar">
+        <div class="filters" role="group" aria-label="Show">
+          <button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="first" aria-pressed="false">First author</button><button type="button" data-f="co" aria-pressed="false">Co-author</button>
+        </div>
+        <div class="links"><a href="https://scholar.google.com/citations?user=45Pod_4AAAAJ">Google Scholar</a></div>
+      </div>
+      <div id="list"></div>
+    </div>
+  </section>
+</main>
+<footer class="site"></footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+// grouped by year; filters only hide entries, so order and citation format stay the same as everywhere else
+const keep = { all: () => true, first: p => p.first, co: p => !p.first };
+const list = document.getElementById('list'), years = [...new Set(DATA.pubs.map(p => p.year))];
+function show(f) {
+  list.innerHTML = '';
+  for (const y of years) {
+    const ps = DATA.pubs.filter(p => p.year === y && keep[f](p)); if (!ps.length) continue;
+    list.insertAdjacentHTML('beforeend', `<div class="yr"><div class="y">${y}</div><ul class="pubs"></ul></div>`);
+    Site.renderPubs(list.lastElementChild.querySelector('ul'), ps, { year: false });
+  }
+  Site.icons(list);
+  document.querySelectorAll('.filters button').forEach(b => b.setAttribute('aria-pressed', b.dataset.f === f));
+}
+document.querySelectorAll('.filters button').forEach(b => b.onclick = () => show(b.dataset.f));
+show('all');
+</script>
+</body>
+</html>
