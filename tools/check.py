@@ -46,7 +46,7 @@ for title, aid, ours, etal in entries:
     time.sleep(1)  # arXiv asks for at most one request every few seconds in bursts
 
 # ---------- 2. local links, 3. TODOs ----------
-for page in sorted(p for p in ROOT.rglob('*.html') if not p.name.startswith('_')):  # _template.html is a stub
+for page in sorted(p for p in ROOT.rglob('*.html') if not p.name.startswith('_') and 'prototype' not in p.parts):  # _template.html is a stub; prototype/ is not published
     if 'tools' in page.parts: continue
     html = page.read_text()
     for ref in re.findall(r'(?:href|src)="([^"]+)"', html):

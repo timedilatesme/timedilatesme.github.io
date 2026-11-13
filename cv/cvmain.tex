@@ -1,0 +1,195 @@
+%-------------------------
+% CV of Paras Sharma. Layout only: every fact comes from assets/data.js, written into cv/generated/ by
+% tools/build_cv.py (run it from the repo root). To change what the CV says, edit the data, not cv/generated/.
+% Resume template:
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{times}
+\usepackage{fancyhdr}
+%\usepackage{tikz}
+\usepackage{fontawesome}
+\usepackage{ragged2e}
+\input{glyphtounicode}
+
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+ \usepackage{CormorantGaramond}
+ \usepackage{charter}
+
+% times
+% \usepackage{mathptmx}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{\color{NavyBlue}
+  \vspace{-4pt}\scshape\raggedright\Large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+% title and supervisor lines wrap in their own column, so a long title never runs into the dates
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{@{}p{0.76\textwidth}@{\extracolsep{\fill}}r@{}}
+      \raggedright\textbf{#1} & {\small #2} \\
+      \raggedright{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\educationSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & {\small #2} \\
+      {\small#3} & \textbf{#4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\educationSubheadingSixBoxes}[6]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & {\small #2} \\
+      {\small#3} & \textbf{#4} \\
+      {\small#5} & {\small #6} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\scholasticitem}[2]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{@{}p{0.86\textwidth}@{\extracolsep{\fill}}r@{}}
+      \raggedright{#1} & {#2} \\
+    \end{tabular*}\vspace{-16pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+% A link in the CV's blue
+\newcommand{\cvlink}[2]{\href{#1}{\color{blue}#2}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{generated/header}
+
+\vspace{1.5em}
+%-----------EDUCATION-----------
+\section{Education}
+\vspace{0.5em}
+\input{generated/education}
+
+\vspace{-0.5em}
+%-----------PUBLICATIONS-----------
+\section{Publications}
+\input{generated/publications}
+
+%-----------TALKS-----------
+\section{Talks}
+\input{generated/talks}
+
+%-----------HONORS-----------
+\section{Achievements and Honors}
+\vspace{0.5em}
+\input{generated/awards}
+
+\vspace{0.8em}
+%-----------RESEARCH-----------
+\section{Research Experience}
+\vspace{0.5em}
+\justifying
+\input{generated/experience}
+\raggedright
+
+\section{Technical Skills}
+\input{generated/skills}
+
+\section{Teaching Experience}
+\vspace{0.3em}
+\input{generated/teaching}
+
+\section{Competitive Research}
+\input{generated/competitions}
+
+\section{Relevant Coursework}
+\input{generated/coursework}
+
+\section{Outreach}
+\input{generated/outreach}
+
+\thispagestyle{empty}
+\end{document}

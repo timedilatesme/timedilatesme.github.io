@@ -1,0 +1,51 @@
+# Builds the CV from assets/data.js and deploys the website, on every push to main.
+# One-time setup: repository Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+name: Build CV and deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write the CV sections from assets/data.js
+        run: python3 tools/build_cv.py --tex-only
+
+      - name: Compile the CV
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: cvmain.tex
+          working_directory: cv
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=build
+
+      - name: Put the CV where the site links to it
+        run: cp cv/build/cvmain.pdf assets/docs/Paras_CV.pdf
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
